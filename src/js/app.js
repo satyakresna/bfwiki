@@ -93,7 +93,7 @@ document.onreadystatechange = function () {
       return `
       <article>
         <h1>${unit.name}</h1>
-        <img src="${unit.artwork}" alt="${unit.name}'s artwork" width="150" height="150" class="m-w-full" />
+        <img src="${unit.artwork}" alt="${unit.name}'s artwork" width="150" height="150" />
         <p>${unit.gender}</p>
         <p>${unit.rarity}</p>
       </article>`
