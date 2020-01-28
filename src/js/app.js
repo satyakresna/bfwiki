@@ -103,6 +103,7 @@ document.onreadystatechange = function () {
     }
 
     function notfound() {
+      closeMenu();
       document.querySelector('main').textContent = 'Not found';
     }
 
