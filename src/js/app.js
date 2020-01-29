@@ -1,9 +1,15 @@
+const requestUnits = async () => {
+  const response = await fetch('https://raw.githubusercontent.com/satyakresna/scraping-bravefrontier/master/units.json');
+  const json = await response.json();
+  return json;
+}
+
 document.onreadystatechange = function () {
   if (document.readyState === 'complete') {
     page('/', index);
     page('/about', about);
     page('/units', units);
-    page('/units/:unit', units);
+    page('/units/:unit', showUnit);
     page('*', notfound);
     // Call it!
     page();
@@ -21,45 +27,40 @@ document.onreadystatechange = function () {
       document.querySelector('main').textContent = 'About';
     }
 
-    function units(ctx) {
+    function units() {
       document.querySelector('main').innerHTML = '';
       closeMenu();
-      if (ctx.params.unit !== undefined) {
-        fetch(`https://raw.githubusercontent.com/satyakresna/scraping-bravefrontier/master/units.json`)
-          .then(response => response.json())
-          .then(data => {
-            let selectedUnit;
-            for (const unit of data) {
-              if (unit.name === ctx.params.unit.split('_').join(' ')) {
-                selectedUnit = unit;
-              }
-            }
-            document.querySelector('main').innerHTML = detailTemplate(selectedUnit);
-          })
-          .catch(error => {
-            document.querySelector('main').textContent = 'Not found.';
-          });
-      } else {
-        fetch('https://raw.githubusercontent.com/satyakresna/scraping-bravefrontier/master/units.json')
-          .then(response => response.json())
-          .then(data => {
-            const fragement = document.createDocumentFragment();
-            const $ul = document.createElement('ul');
-            $ul.setAttribute('class', 'flex flex-col items-center md:flex-row md:flex-wrap md:justify-center');
-            data.forEach(unit => {
-              const $li = document.createElement('li');
-              $li.setAttribute('class', 'flex flex-col items-center p-4 m-4 w-1/2 md:w-1/6 bg-white shadow');
-              $li.innerHTML = contentTemplate(unit);
-              fragement.appendChild($li);
-            });
-            $ul.appendChild(fragement);
-            document.querySelector('main').appendChild($ul);
+      requestUnits().then(data => {
+        const fragement = document.createDocumentFragment();
+        const $ul = document.createElement('ul');
+        $ul.setAttribute('class', 'flex flex-col items-center md:flex-row md:flex-wrap md:justify-center');
+        data.forEach(unit => {
+          const $li = document.createElement('li');
+          $li.setAttribute('class', 'flex flex-col items-center p-4 m-4 w-1/2 md:w-1/6 bg-white shadow');
+          $li.innerHTML = contentTemplate(unit);
+          fragement.appendChild($li);
+        });
+        $ul.appendChild(fragement);
+        document.querySelector('main').appendChild($ul);
 
-            // Lazy image
-            lazyImg();
-          })
-          .catch(error => console.error(error));
-      }
+        // Lazy image
+        lazyImg();
+      })
+    }
+
+    function showUnit(ctx) {
+      requestUnits().then(data => {
+        let selectedUnit;
+          for (const unit of data) {
+            if (unit.name === ctx.params.unit.split('_').join(' ')) {
+              selectedUnit = unit;
+            }
+          }
+          document.querySelector('main').innerHTML = detailTemplate(selectedUnit);
+      })
+      .catch(error => {
+        document.querySelector('main').textContent = 'Not found.';
+      });
     }
 
     function contentTemplate(unit) {
