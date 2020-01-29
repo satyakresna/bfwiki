@@ -31,19 +31,23 @@ document.onreadystatechange = function () {
       document.querySelector('main').innerHTML = '';
       closeMenu();
       requestUnits().then(data => {
+        const begin = 0;
+        const end = 100;
+        const units = data.slice(begin, end);
         const fragement = document.createDocumentFragment();
         const $ul = document.createElement('ul');
+        $ul.setAttribute('id', 'unitList');
         $ul.setAttribute('class', 'flex flex-col items-center md:flex-row md:flex-wrap md:justify-center');
-        data.forEach(unit => {
+        for (const unit of units) {
           const $li = document.createElement('li');
-          $li.setAttribute('class', 'flex flex-col items-center p-4 m-4 w-1/2 md:w-1/6 bg-white shadow');
+          $li.setAttribute('class', 'flex flex-col items-center p-4 m-4 w-1/2 md:w-1/6 bg-white shadow unit');
           $li.innerHTML = unitsTemplate(unit);
           fragement.appendChild($li);
-        });
+        }
         $ul.appendChild(fragement);
         document.querySelector('main').appendChild($ul);
 
-        // Lazy image
+        // Observe units content
         observeUnitsContent();
       })
     }
@@ -51,16 +55,16 @@ document.onreadystatechange = function () {
     function showUnit(ctx) {
       requestUnits().then(data => {
         let selectedUnit;
-          for (const unit of data) {
-            if (unit.name === ctx.params.unit.split('_').join(' ')) {
-              selectedUnit = unit;
-            }
+        for (const unit of data) {
+          if (unit.name === ctx.params.unit.split('_').join(' ')) {
+            selectedUnit = unit;
           }
-          document.querySelector('main').innerHTML = unitTemplate(selectedUnit);
+        }
+        document.querySelector('main').innerHTML = unitTemplate(selectedUnit);
       })
-      .catch(error => {
-        document.querySelector('main').textContent = 'Not found.';
-      });
+        .catch(error => {
+          document.querySelector('main').textContent = 'Not found.';
+        });
     }
 
     function unitsTemplate(unit) {
@@ -71,6 +75,35 @@ document.onreadystatechange = function () {
     }
 
     function observeUnitsContent() {
+      const childrenElement = document.querySelector('ul#unitList').children;
+
+      // Observe and do infinite scroll
+      let contentObserver = new IntersectionObserver(function (entries, self) {
+        if (entries[0].isIntersecting) {
+          requestUnits().then(data => {
+            const begin = childrenElement.length + 1;
+            const end = childrenElement.length + 100;
+            const units = data.slice(begin, end);
+            const fragement = document.createDocumentFragment();
+            for (const unit of units) {
+              const $li = document.createElement('li');
+              $li.setAttribute('class', 'flex flex-col items-center p-4 m-4 w-1/2 md:w-1/6 bg-white shadow unit');
+              $li.innerHTML = unitsTemplate(unit);
+              fragement.appendChild($li);
+            }
+            document.querySelector('ul#unitList').appendChild(fragement);
+            observeUnitsContent();
+          })
+          self.unobserve(entries[0].target);
+        }
+      }, {
+        root: null, // page as root
+        rootMargin: '0px',
+        threshold: 1.0
+      });
+
+      contentObserver.observe(childrenElement[childrenElement.length - 10]);
+
       const $images = document.querySelectorAll('[data-src]');
       const config = {
         rootMargin: '0px 0px 50px 0px',
