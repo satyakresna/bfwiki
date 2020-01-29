@@ -37,14 +37,14 @@ document.onreadystatechange = function () {
         data.forEach(unit => {
           const $li = document.createElement('li');
           $li.setAttribute('class', 'flex flex-col items-center p-4 m-4 w-1/2 md:w-1/6 bg-white shadow');
-          $li.innerHTML = contentTemplate(unit);
+          $li.innerHTML = unitsTemplate(unit);
           fragement.appendChild($li);
         });
         $ul.appendChild(fragement);
         document.querySelector('main').appendChild($ul);
 
         // Lazy image
-        lazyImg();
+        observeUnitsContent();
       })
     }
 
@@ -56,21 +56,21 @@ document.onreadystatechange = function () {
               selectedUnit = unit;
             }
           }
-          document.querySelector('main').innerHTML = detailTemplate(selectedUnit);
+          document.querySelector('main').innerHTML = unitTemplate(selectedUnit);
       })
       .catch(error => {
         document.querySelector('main').textContent = 'Not found.';
       });
     }
 
-    function contentTemplate(unit) {
+    function unitsTemplate(unit) {
       const path = unit.name.split(' ').join('_');
       return `
           <img data-src="${unit.thumbnail}" width="50" height="50"/>
           <p class="text-sm mt-2"><a href="units/${path}">${unit.name}</a></p>`
     }
 
-    function lazyImg() {
+    function observeUnitsContent() {
       const $images = document.querySelectorAll('[data-src]');
       const config = {
         rootMargin: '0px 0px 50px 0px',
@@ -93,7 +93,7 @@ document.onreadystatechange = function () {
       });
     }
 
-    function detailTemplate(unit) {
+    function unitTemplate(unit) {
       return `
       <article>
         <h1>${unit.name}</h1>
