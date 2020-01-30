@@ -27,10 +27,16 @@ document.onreadystatechange = function () {
       document.querySelector('main').textContent = 'About';
     }
 
-    function units() {
+    function units(ctx) {
       document.querySelector('main').innerHTML = '';
       closeMenu();
       requestUnits().then(data => {
+        
+        // Stupid way (?): store unit length in window.
+        if (window.unitLength == undefined) {
+          window.unitLength = data.length; 
+        }
+
         const begin = 0;
         const end = 100;
         const units = data.slice(begin, end);
@@ -75,25 +81,28 @@ document.onreadystatechange = function () {
     }
 
     function observeUnitsContent() {
+      const lastElementChild = document.querySelector('ul#unitList').lastElementChild;
       const childrenElement = document.querySelector('ul#unitList').children;
 
       // Observe and do infinite scroll
       let contentObserver = new IntersectionObserver(function (entries, self) {
         if (entries[0].isIntersecting) {
-          requestUnits().then(data => {
-            const begin = childrenElement.length + 1;
-            const end = childrenElement.length + 100;
-            const units = data.slice(begin, end);
-            const fragement = document.createDocumentFragment();
-            for (const unit of units) {
-              const $li = document.createElement('li');
-              $li.setAttribute('class', 'flex flex-col items-center p-4 m-4 w-1/2 md:w-1/6 bg-white shadow unit');
-              $li.innerHTML = unitsTemplate(unit);
-              fragement.appendChild($li);
-            }
-            document.querySelector('ul#unitList').appendChild(fragement);
-            observeUnitsContent();
-          })
+          const begin = (childrenElement.length - 1) + 1;
+          const end = childrenElement.length + 100;
+          if (childrenElement.length < window.unitLength) {
+            requestUnits().then(data => {
+              const units = data.slice(begin, end);
+              const fragement = document.createDocumentFragment();
+              for (const unit of units) {
+                const $li = document.createElement('li');
+                $li.setAttribute('class', 'flex flex-col items-center p-4 m-4 w-1/2 md:w-1/6 bg-white shadow unit');
+                $li.innerHTML = unitsTemplate(unit);
+                fragement.appendChild($li);
+              }
+              document.querySelector('ul#unitList').appendChild(fragement);
+              observeUnitsContent();
+            }) 
+          }
           self.unobserve(entries[0].target);
         }
       }, {
@@ -102,7 +111,7 @@ document.onreadystatechange = function () {
         threshold: 1.0
       });
 
-      contentObserver.observe(childrenElement[childrenElement.length - 10]);
+      contentObserver.observe(lastElementChild);
 
       const $images = document.querySelectorAll('[data-src]');
       const config = {
