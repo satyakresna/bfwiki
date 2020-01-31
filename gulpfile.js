@@ -48,6 +48,7 @@ gulp.task('js', async function () {
 
 gulp.task('watch', async function () {
   gulp.watch('./src/assets/**', gulp.series('assets'));
+  gulp.watch('./src/js/plugins/**', gulp.series('js-plugins'));
   gulp.watch('./src/js/app.js', gulp.series('js'));
   gulp.watch(['./src/**/*.html'], gulp.series('html', 'css')).on('change', browserSync.reload);
 });
