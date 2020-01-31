@@ -113,6 +113,10 @@ document.onreadystatechange = function () {
 
       contentObserver.observe(lastElementChild);
 
+      observeUnitsThumbnail();
+    }
+
+    function observeUnitsThumbnail() {
       const $images = document.querySelectorAll('[data-src]');
       const config = {
         rootMargin: '0px 0px 50px 0px',
