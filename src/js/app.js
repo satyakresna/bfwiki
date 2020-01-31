@@ -74,9 +74,9 @@ document.onreadystatechange = function () {
             const $unitName = document.getElementById('unitName');
             if ($unitName.value !== '') {
               const unitName = encodeURI($unitName.value);
-              page.replace(`${window.location.pathname}?search=${unitName}`, ctx.state);
+              page.show(`${window.location.pathname}?search=${unitName}`, ctx.state);
             } else {
-              page.replace(`${window.location.pathname}`, ctx.state);
+              page.show(`${window.location.pathname}`, ctx.state);
             }
           });
         })
@@ -127,9 +127,9 @@ document.onreadystatechange = function () {
             const $unitName = document.getElementById('unitName');
             if ($unitName.value !== '') {
               const unitName = encodeURI($unitName.value);
-              page.replace(`${window.location.pathname}?search=${unitName}`, ctx.state);
+              page.show(`${window.location.pathname}?search=${unitName}`, ctx.state);
             } else {
-              page.replace(`${window.location.pathname}`, ctx.state);
+              page.show(`${window.location.pathname}`, ctx.state);
             }
           });
         })
