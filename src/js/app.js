@@ -50,7 +50,27 @@ document.onreadystatechange = function () {
           $ul.appendChild(fragement);
           document.querySelector('main').appendChild($ul);
 
+          // Search form
+          const $form = document.createRange().createContextualFragment(`
+          <form method="GET">
+            <input type="text" name="search" id="unitName">
+            <button type="button" id="searchUnitBtn">Search</button>
+          </form>
+          `);
+          document.querySelector('main').insertBefore($form, $ul);
+
+          document.getElementById('unitName').value = decodeURI(ctx.querystring.split('=')[1]);
+
           observeUnitsThumbnail();
+
+          document.getElementById('searchUnitBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            const $unitName = document.getElementById('unitName');
+            if ($unitName.value !== '') {
+              const unitName = encodeURI($unitName.value);
+              page.replace(`${window.location.pathname}?search=${unitName}`, ctx.state);
+            }
+          })
         })
       } else {
         closeMenu();
