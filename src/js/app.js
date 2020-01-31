@@ -29,33 +29,75 @@ document.onreadystatechange = function () {
 
     function units(ctx) {
       document.querySelector('main').innerHTML = '';
-      closeMenu();
-      requestUnits().then(data => {
-        
-        // Stupid way (?): store unit length in window.
-        if (window.unitLength == undefined) {
-          window.unitLength = data.length; 
-        }
+      if (ctx.querystring !== '') {
+        const searchValue = decodeURI(ctx.querystring.split('=')[1]).toLowerCase();
+        requestUnits().then(data => {
+          const units = data.filter(item => {
+            if ((item.name.toLowerCase().indexOf(searchValue) > -1)) {
+              return item;
+            }
+          });
+          const fragement = document.createDocumentFragment();
+          const $ul = document.createElement('ul');
+          $ul.setAttribute('id', 'unitList');
+          $ul.setAttribute('class', 'flex flex-col items-center md:flex-row md:flex-wrap md:justify-center');
+          for (const unit of units) {
+            const $li = document.createElement('li');
+            $li.setAttribute('class', 'flex flex-col items-center p-4 m-4 w-1/2 md:w-1/6 bg-white shadow unit');
+            $li.innerHTML = unitsTemplate(unit);
+            fragement.appendChild($li);
+          }
+          $ul.appendChild(fragement);
+          document.querySelector('main').appendChild($ul);
 
-        const begin = 0;
-        const end = 100;
-        const units = data.slice(begin, end);
-        const fragement = document.createDocumentFragment();
-        const $ul = document.createElement('ul');
-        $ul.setAttribute('id', 'unitList');
-        $ul.setAttribute('class', 'flex flex-col items-center md:flex-row md:flex-wrap md:justify-center');
-        for (const unit of units) {
-          const $li = document.createElement('li');
-          $li.setAttribute('class', 'flex flex-col items-center p-4 m-4 w-1/2 md:w-1/6 bg-white shadow unit');
-          $li.innerHTML = unitsTemplate(unit);
-          fragement.appendChild($li);
-        }
-        $ul.appendChild(fragement);
-        document.querySelector('main').appendChild($ul);
+          observeUnitsThumbnail();
+        })
+      } else {
+        closeMenu();
+        requestUnits().then(data => {
+          // Stupid way (?): store unit length in window.
+          if (window.unitLength == undefined) {
+            window.unitLength = data.length;
+          }
 
-        // Observe units content
-        observeUnitsContent();
-      })
+          const begin = 0;
+          const end = 100;
+          const units = data.slice(begin, end);
+          const fragement = document.createDocumentFragment();
+          const $ul = document.createElement('ul');
+          $ul.setAttribute('id', 'unitList');
+          $ul.setAttribute('class', 'flex flex-col items-center md:flex-row md:flex-wrap md:justify-center');
+          for (const unit of units) {
+            const $li = document.createElement('li');
+            $li.setAttribute('class', 'flex flex-col items-center p-4 m-4 w-1/2 md:w-1/6 bg-white shadow unit');
+            $li.innerHTML = unitsTemplate(unit);
+            fragement.appendChild($li);
+          }
+          $ul.appendChild(fragement);
+          document.querySelector('main').appendChild($ul);
+
+          // Search form
+          const $form = document.createRange().createContextualFragment(`
+        <form method="GET">
+          <input type="text" name="search" id="unitName">
+          <button type="button" id="searchUnitBtn">Search</button>
+        </form>
+        `);
+          document.querySelector('main').insertBefore($form, $ul);
+
+          // Observe units content
+          observeUnitsContent();
+
+          document.getElementById('searchUnitBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            const $unitName = document.getElementById('unitName');
+            if ($unitName.value !== '') {
+              const unitName = encodeURI($unitName.value);
+              page.replace(`${window.location.pathname}?search=${unitName}`, ctx.state);
+            }
+          })
+        })
+      }
     }
 
     function showUnit(ctx) {
@@ -101,7 +143,7 @@ document.onreadystatechange = function () {
               }
               document.querySelector('ul#unitList').appendChild(fragement);
               observeUnitsContent();
-            }) 
+            })
           }
           self.unobserve(entries[0].target);
         }
