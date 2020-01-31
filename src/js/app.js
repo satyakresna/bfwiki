@@ -119,15 +119,15 @@ document.onreadystatechange = function () {
       }
     }
 
-    function searchUnit(ctx) {
+    function searchUnit(params) {
       document.querySelector('form').addEventListener('submit', (e) => {
         e.preventDefault();
         const $unitName = document.getElementById('unitName');
         if ($unitName.value !== '') {
           const unitName = encodeURI($unitName.value);
-          page.show(`${window.location.pathname}?search=${unitName}`, ctx.state);
+          page.show(`${window.location.pathname}?search=${unitName}`, params.state);
         } else {
-          page.show(`${window.location.pathname}`, ctx.state);
+          page.show(`${window.location.pathname}`, params.state);
         }
       });
     }
