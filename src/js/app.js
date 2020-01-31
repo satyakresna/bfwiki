@@ -69,16 +69,7 @@ document.onreadystatechange = function () {
 
           observeUnitsThumbnail();
 
-          document.querySelector('form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const $unitName = document.getElementById('unitName');
-            if ($unitName.value !== '') {
-              const unitName = encodeURI($unitName.value);
-              page.show(`${window.location.pathname}?search=${unitName}`, ctx.state);
-            } else {
-              page.show(`${window.location.pathname}`, ctx.state);
-            }
-          });
+          searchUnit(ctx);
         })
       } else {
         closeMenu();
@@ -122,18 +113,22 @@ document.onreadystatechange = function () {
           // Observe units content
           observeUnitsContent();
 
-          document.querySelector('form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const $unitName = document.getElementById('unitName');
-            if ($unitName.value !== '') {
-              const unitName = encodeURI($unitName.value);
-              page.show(`${window.location.pathname}?search=${unitName}`, ctx.state);
-            } else {
-              page.show(`${window.location.pathname}`, ctx.state);
-            }
-          });
+          searchUnit(ctx);
         })
       }
+    }
+
+    function searchUnit(ctx) {
+      document.querySelector('form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const $unitName = document.getElementById('unitName');
+        if ($unitName.value !== '') {
+          const unitName = encodeURI($unitName.value);
+          page.show(`${window.location.pathname}?search=${unitName}`, ctx.state);
+        } else {
+          page.show(`${window.location.pathname}`, ctx.state);
+        }
+      });
     }
 
     function showUnit(ctx) {
