@@ -9,7 +9,7 @@ document.onreadystatechange = function () {
     page('/', index);
     page('/about', about);
     page('/units', units);
-    page('/units/:unit', showUnit);
+    page('/units/:unit', loadUnit, showUnit);
     page('*', notfound);
     // Call it!
     page();
@@ -28,6 +28,7 @@ document.onreadystatechange = function () {
     }
 
     function units(ctx) {
+      document.title = 'Brave Frontier Wiki';
       document.querySelector('main').innerHTML = '';
       if (ctx.querystring !== '') {
         const searchValue = decodeURI(ctx.querystring.split('=')[1]).toLowerCase();
@@ -131,14 +132,20 @@ document.onreadystatechange = function () {
       });
     }
 
+    function loadUnit(ctx, next) {
+      ctx.state.unitname = ctx.params.unit.split('_').join(' ');
+      next();
+    }
+
     function showUnit(ctx) {
       requestUnits().then(data => {
         let selectedUnit;
         for (const unit of data) {
-          if (unit.name === ctx.params.unit.split('_').join(' ')) {
+          if (unit.name === ctx.state.unitname) {
             selectedUnit = unit;
           }
         }
+        document.title = `${ctx.state.unitname} - ${ctx.title}`;
         document.querySelector('main').innerHTML = unitTemplate(selectedUnit);
       })
         .catch(error => {
