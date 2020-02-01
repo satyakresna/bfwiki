@@ -1,5 +1,5 @@
 const requestUnits = async () => {
-  const response = await fetch('https://raw.githubusercontent.com/satyakresna/scraping-bravefrontier/master/units.json');
+  const response = await fetch('https://raw.githubusercontent.com/satyakresna/scraping-bravefrontier/master/data/units.json');
   const json = await response.json();
   return json;
 }
