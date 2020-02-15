@@ -6,21 +6,12 @@ const requestUnits = async () => {
 
 document.onreadystatechange = function () {
   if (document.readyState === 'complete') {
-    page('/', index);
+    page('/', units);
     page('/about', about);
-    page('/units', units);
     page('/units/:unit', loadUnit, showUnit);
     page('*', notfound);
     // Call it!
     page();
-
-    function index() {
-      // Empty the previous content
-      document.querySelector('main').innerHTML = `
-        <h1>Brave Frontier Wiki</h1>
-        <p>This wiki to help you search units and spheres in Brave Frontier</p>
-      `;
-    }
 
     function about() {
       closeMenu();
