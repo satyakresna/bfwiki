@@ -1,19 +1,6 @@
 import unitsTemplate from "./unitsTemplate.js";
 
 export default function renderUnitsContent(units) {
-  const fragement = document.createDocumentFragment();
-  const $ul = document.createElement('ul');
-  $ul.setAttribute('id', 'unitList');
-  $ul.setAttribute('class', 'flex flex-col items-center md:flex-row md:flex-wrap md:justify-center');
-  for (const unit of units) {
-    const $li = document.createElement('li');
-    $li.setAttribute('class', 'flex flex-col items-center p-4 m-4 w-1/2 md:w-1/6 bg-white shadow unit');
-    $li.innerHTML = unitsTemplate(unit);
-    fragement.appendChild($li);
-  }
-  $ul.appendChild(fragement);
-  document.querySelector('main').appendChild($ul);
-
   // Search form
   const $form = document.createRange().createContextualFragment(`
   <form method="GET" class="w-3/4 mx-auto py-2 my-4">
@@ -41,5 +28,27 @@ export default function renderUnitsContent(units) {
   </div>
 </form>
   `);
-  document.querySelector('main').insertBefore($form, $ul);
+
+  if (Array.isArray(units) && units.length > 0) {
+    const fragement = document.createDocumentFragment();
+    const $ul = document.createElement('ul');
+    $ul.setAttribute('id', 'unitList');
+    $ul.setAttribute('class', 'flex flex-col items-center md:flex-row md:flex-wrap md:justify-center');
+    for (const unit of units) {
+      const $li = document.createElement('li');
+      $li.setAttribute('class', 'flex flex-col items-center p-4 m-4 w-1/2 md:w-1/6 bg-white shadow unit');
+      $li.innerHTML = unitsTemplate(unit);
+      fragement.appendChild($li);
+    }
+    $ul.appendChild(fragement);
+    document.querySelector('main').appendChild($ul);
+    document.querySelector('main').insertBefore($form, $ul);
+
+  } else {
+    const $p = document.createElement('p');
+    $p.setAttribute('class', 'text-center mt-4');
+    $p.innerHTML = `<strong>Opps.. Not found. :(</strong>`;
+    document.querySelector('main').appendChild($p);
+    document.querySelector('main').insertBefore($form, $p);
+  }
 }
