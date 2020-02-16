@@ -10,20 +10,20 @@ export function units(ctx) {
   document.querySelector('main').innerHTML = '';
   if (ctx.querystring !== '') {
     const searchParams = new URLSearchParams(ctx.querystring);
-    const searchUnitName = searchParams.get('unitname').toLowerCase();
+    const searchUnitName = searchParams.get('unitname');
     const searchUnitElement = searchParams.get('unitelement');
 
     if (ctx.state.units) {
       let filteredUnits;
       if (searchUnitName !== null && searchUnitElement !== null) {
         filteredUnits = ctx.state.units.filter(item => {
-          if ((item.name.toLowerCase().indexOf(searchUnitName) > -1) && item.element === searchUnitElement) {
+          if ((item.name.toLowerCase().indexOf(searchUnitName.toLowerCase()) > -1) && item.element === searchUnitElement) {
             return item;
           }
         });
       } else if (searchUnitName !== null && searchUnitElement === null) {
         filteredUnits = ctx.state.units.filter(item => {
-          if ((item.name.toLowerCase().indexOf(searchUnitName) > -1)) {
+          if ((item.name.toLowerCase().indexOf(searchUnitName.toLowerCase()) > -1)) {
             return item;
           }
         });
