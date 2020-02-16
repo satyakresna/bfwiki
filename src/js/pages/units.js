@@ -4,39 +4,33 @@ import { requestUnits } from "../utils/request.js";
 export function units(ctx) {
   document.title = 'Brave Frontier Wiki';
   document.querySelector('main').innerHTML = '';
-  if (ctx.querystring !== '') {
-    const searchValue = decodeURI(ctx.querystring.split('=')[1]).toLowerCase();
-    requestUnits().then(data => {
-      const units = data.filter(item => {
-        if ((item.name.toLowerCase().indexOf(searchValue) > -1)) {
-          return item;
-        }
-      });
-      
-      renderUnitsContent(units);
+  if (ctx.state.units) {
+    const begin = 0;
+    const end = 100;
+    renderUnitsContent(ctx.state.units.slice(begin, end));
 
-      document.getElementById('unitName').value = decodeURI(ctx.querystring.split('=')[1]);
-
-      observeUnitsThumbnail();
-
-      searchUnit(ctx);
-    })
+    // Observe units content
+    observeUnitsContent(ctx.state.units);
   } else {
     closeMenu();
     requestUnits().then(data => {
-      // Stupid way (?): store unit length in window.
-      if (window.unitLength == undefined) {
-        window.unitLength = data.length;
+      const units = [];
+      for (const unit of data) {
+        delete unit.spRecommendation;
+        delete unit.gender;
+        delete unit.artwork;
+        delete unit.gender;
+        units.push(unit);
       }
+      ctx.state.units = units;
+      ctx.save();
 
       const begin = 0;
       const end = 100;
-      renderUnitsContent(data.slice(begin, end));
+      renderUnitsContent(units.slice(begin, end));
 
       // Observe units content
-      observeUnitsContent();
-
-      searchUnit(ctx);
+      observeUnitsContent(units);
     })
   }
 }
@@ -48,7 +42,7 @@ export function unitsTemplate(unit) {
       <p class="text-sm mt-2"><a href="units/${path}">${unit.name}</a></p>`
 }
 
-export function observeUnitsContent() {
+export function observeUnitsContent(units) {
   const lastElementChild = document.querySelector('ul#unitList').lastElementChild;
   const childrenElement = document.querySelector('ul#unitList').children;
 
@@ -57,19 +51,17 @@ export function observeUnitsContent() {
     if (entries[0].isIntersecting) {
       const begin = (childrenElement.length - 1) + 1;
       const end = childrenElement.length + 100;
-      if (childrenElement.length < window.unitLength) {
-        requestUnits().then(data => {
-          const units = data.slice(begin, end);
-          const fragement = document.createDocumentFragment();
-          for (const unit of units) {
-            const $li = document.createElement('li');
-            $li.setAttribute('class', 'flex flex-col items-center p-4 m-4 w-1/2 md:w-1/6 bg-white shadow unit');
-            $li.innerHTML = unitsTemplate(unit);
-            fragement.appendChild($li);
-          }
-          document.querySelector('ul#unitList').appendChild(fragement);
-          observeUnitsContent();
-        })
+      if (childrenElement.length < units.length) {
+        const nextUnits = units.slice(begin, end);
+        const fragement = document.createDocumentFragment();
+        for (const unit of nextUnits) {
+          const $li = document.createElement('li');
+          $li.setAttribute('class', 'flex flex-col items-center p-4 m-4 w-1/2 md:w-1/6 bg-white shadow unit');
+          $li.innerHTML = unitsTemplate(unit);
+          fragement.appendChild($li);
+        }
+        document.querySelector('ul#unitList').appendChild(fragement);
+        observeUnitsContent(units);
       }
       self.unobserve(entries[0].target);
     }
@@ -108,6 +100,7 @@ export function observeUnitsThumbnail() {
 }
 
 export function renderUnitsContent(units) {
+  console.log(units);
   const fragement = document.createDocumentFragment();
   const $ul = document.createElement('ul');
   $ul.setAttribute('id', 'unitList');
@@ -135,17 +128,4 @@ export function renderUnitsContent(units) {
 </form>
   `);
   document.querySelector('main').insertBefore($form, $ul);
-}
-
-export function searchUnit(params) {
-  document.querySelector('form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const $unitName = document.getElementById('unitName');
-    if ($unitName.value !== '') {
-      const unitName = encodeURI($unitName.value);
-      page.show(`${window.location.pathname}?search=${unitName}`, params.state);
-    } else {
-      page.show(`${window.location.pathname}`, params.state);
-    }
-  });
 }
