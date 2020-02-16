@@ -6,7 +6,7 @@ Brave Frontier wiki.
 
 - [x] Get list of omni units
 - [x] Display detail of unit and SP recommendation.
-- [ ] Filter omni units based on name and element.
+- [x] Filter omni units based on name and element.
 
 ## How to run
 
