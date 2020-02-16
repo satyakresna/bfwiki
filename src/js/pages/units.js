@@ -85,6 +85,12 @@ export function units(ctx) {
         observeUnitsThumbnail();
 
         searchUnits(ctx);
+      })
+      .catch(error => {
+        const $p = document.createElement('p');
+        $p.setAttribute('class', 'text-center m-auto font-bold');
+        $p.textContent = 'Opps, failed to get omni units. Please try again in 3 minutes...';
+        document.querySelector('main').appendChild($p);
       });
     }
   } else {

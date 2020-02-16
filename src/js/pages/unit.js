@@ -24,6 +24,12 @@ export function loadUnit(ctx, next) {
           next();
         }
       }
+    })
+    .catch(error => {
+      const $p = document.createElement('p');
+      $p.setAttribute('class', 'text-center m-auto font-bold');
+      $p.textContent = 'Opps, failed to get detail of unit. Please try again in 3 minutes...';
+      document.querySelector('main').appendChild($p);
     });
   }, 300);
 }
