@@ -36,14 +36,13 @@ export default function renderUnitsContent(units) {
     $ul.setAttribute('class', 'flex flex-col items-center md:flex-row md:flex-wrap md:justify-center');
     for (const unit of units) {
       const $li = document.createElement('li');
-      $li.setAttribute('class', 'flex flex-col items-center p-4 m-4 w-1/2 md:w-1/6 bg-white shadow unit');
+      $li.setAttribute('class', 'flex flex-col items-center p-4 m-4 w-1/2 md:w-1/6 bg-white shadow border border-gray-400 rounded');
       $li.innerHTML = unitsTemplate(unit);
       fragement.appendChild($li);
     }
     $ul.appendChild(fragement);
     document.querySelector('main').appendChild($ul);
     document.querySelector('main').insertBefore($form, $ul);
-
   } else {
     const $p = document.createElement('p');
     $p.setAttribute('class', 'text-center mt-4');
