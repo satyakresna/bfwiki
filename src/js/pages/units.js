@@ -9,33 +9,78 @@ export function units(ctx) {
   document.title = 'Brave Frontier Wiki';
   document.querySelector('main').innerHTML = '';
   if (ctx.querystring !== '') {
-    const searchValue = decodeURI(ctx.querystring.split('=')[1]).toLowerCase();
+    const searchParams = new URLSearchParams(ctx.querystring);
+    const searchUnitName = searchParams.get('unitname');
+    const searchUnitElement = searchParams.get('unitelement');
 
     if (ctx.state.units) {
-      const filteredUnits = ctx.state.units.filter(item => {
-        if ((item.name.toLowerCase().indexOf(searchValue) > -1)) {
-          return item;
-        }
-      });
+      let filteredUnits;
+      if (searchUnitName !== null && searchUnitElement !== null) {
+        filteredUnits = ctx.state.units.filter(item => {
+          if ((item.name.toLowerCase().indexOf(searchUnitName) > -1) && item.element === searchUnitElement) {
+            return item;
+          }
+        });
+      } else if (searchUnitName !== null && searchUnitElement === null) {
+        filteredUnits = ctx.state.units.filter(item => {
+          if ((item.name.toLowerCase().indexOf(searchUnitName) > -1)) {
+            return item;
+          }
+        });
+      } else if (searchUnitName === null && searchUnitElement !== null) {
+        filteredUnits = ctx.state.units.filter(item => {
+          if (item.element === searchUnitElement) {
+            return item;
+          }
+        });
+      }
 
       renderUnitsContent(filteredUnits);
 
-      document.getElementById('searchUnitName').value = searchValue;
+      if (searchUnitName !== null) {
+        document.getElementById('searchUnitName').value = searchUnitName;
+      }
+
+      if (searchUnitElement !== null) {
+        document.getElementById('searchUnitElement').value = searchUnitElement;
+      }
 
       observeUnitsThumbnail();
 
       searchUnits(ctx);
     } else {
       requestUnits().then(data => {
-        const filteredUnits = data.filter(item => {
-          if ((item.name.toLowerCase().indexOf(searchValue) > -1)) {
-            return item;
-          }
-        });
+        let filteredUnits;
+
+        if (searchUnitName !== null && searchUnitElement !== null) {
+          filteredUnits = data.filter(item => {
+            if ((item.name.toLowerCase().indexOf(searchUnitName) > -1) && item.element === searchUnitElement) {
+              return item;
+            }
+          });
+        } else if (searchUnitName !== null && searchUnitElement === null) {
+          filteredUnits = data.filter(item => {
+            if ((item.name.toLowerCase().indexOf(searchUnitName) > -1)) {
+              return item;
+            }
+          });
+        } else if (searchUnitName === null && searchUnitElement !== null) {
+          filteredUnits = data.filter(item => {
+            if (item.element === searchUnitElement) {
+              return item;
+            }
+          });
+        }
 
         renderUnitsContent(filteredUnits);
 
-        document.getElementById('searchUnitName').value = searchValue;
+        if (searchUnitName !== null) {
+          document.getElementById('searchUnitName').value = searchUnitName;
+        }
+  
+        if (searchUnitElement !== null) {
+          document.getElementById('searchUnitElement').value = searchUnitElement;
+        }
 
         observeUnitsThumbnail();
 
