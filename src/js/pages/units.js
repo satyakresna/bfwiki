@@ -176,7 +176,6 @@ export function observeUnitsThumbnail() {
 }
 
 export function renderUnitsContent(units) {
-  console.log(units);
   const fragement = document.createDocumentFragment();
   const $ul = document.createElement('ul');
   $ul.setAttribute('id', 'unitList');
