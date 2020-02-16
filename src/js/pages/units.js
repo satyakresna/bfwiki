@@ -10,7 +10,7 @@ export function units(ctx) {
   document.querySelector('main').innerHTML = '';
   if (ctx.querystring !== '') {
     const searchParams = new URLSearchParams(ctx.querystring);
-    const searchUnitName = searchParams.get('unitname');
+    const searchUnitName = searchParams.get('unitname').toLowerCase();
     const searchUnitElement = searchParams.get('unitelement');
 
     if (ctx.state.units) {
