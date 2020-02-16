@@ -4,7 +4,8 @@ Brave Frontier wiki.
 
 ## Specifications
 
-- [ ] Get list of omni units and display unit's SP recommendation.
+- [x] Get list of omni units
+- [ ] Display detail of unit and SP recommendation.
 - [ ] Filter omni units based on name and element.
 
 ## How to run
