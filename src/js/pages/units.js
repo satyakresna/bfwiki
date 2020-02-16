@@ -4,34 +4,110 @@ import { requestUnits } from "../utils/request.js";
 export function units(ctx) {
   document.title = 'Brave Frontier Wiki';
   document.querySelector('main').innerHTML = '';
-  if (ctx.state.units) {
-    const begin = 0;
-    const end = 100;
-    renderUnitsContent(ctx.state.units.slice(begin, end));
+  if (ctx.querystring !== '') {
+    const searchValue = decodeURI(ctx.querystring.split('=')[1]).toLowerCase();
 
-    // Observe units content
-    observeUnitsContent(ctx.state.units);
+    if (ctx.state.units) {
+      const filteredUnits = ctx.state.units.filter(item => {
+        if ((item.name.toLowerCase().indexOf(searchValue) > -1)) {
+          return item;
+        }
+      });
+
+      renderUnitsContent(filteredUnits);
+
+      document.getElementById('searchUnitName').value = searchValue;
+
+      observeUnitsThumbnail();
+
+      document.querySelector('form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const $searchUnitName = document.getElementById('searchUnitName');
+        if ($searchUnitName.value !== '') {
+          const searchUnitName = encodeURI($searchUnitName.value);
+          page.show(`${window.location.pathname}?search=${searchUnitName}`, ctx.state);
+        } else {
+          page.show(`${window.location.pathname}`, ctx.state);
+        }
+      });
+    } else {
+      requestUnits().then(data => {
+        const filteredUnits = data.filter(item => {
+          if ((item.name.toLowerCase().indexOf(searchValue) > -1)) {
+            return item;
+          }
+        });
+
+        renderUnitsContent(filteredUnits);
+
+        document.getElementById('searchUnitName').value = searchValue;
+
+        observeUnitsThumbnail();
+
+        document.querySelector('form').addEventListener('submit', (e) => {
+          e.preventDefault();
+          const $searchUnitName = document.getElementById('searchUnitName');
+          if ($searchUnitName.value !== '') {
+            const searchUnitName = encodeURI($searchUnitName.value);
+            page.show(`${window.location.pathname}?search=${searchUnitName}`, ctx.state);
+          } else {
+            page.show(`${window.location.pathname}`, ctx.state);
+          }
+        });
+      });
+    }
   } else {
-    closeMenu();
-    requestUnits().then(data => {
-      const units = [];
-      for (const unit of data) {
-        delete unit.spRecommendation;
-        delete unit.gender;
-        delete unit.artwork;
-        delete unit.gender;
-        units.push(unit);
-      }
-      ctx.state.units = units;
-      ctx.save();
-
+    if (ctx.state.units) {
       const begin = 0;
       const end = 100;
-      renderUnitsContent(units.slice(begin, end));
+      renderUnitsContent(ctx.state.units.slice(begin, end));
 
       // Observe units content
-      observeUnitsContent(units);
-    })
+      observeUnitsContent(ctx.state.units);
+
+      document.querySelector('form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const $searchUnitName = document.getElementById('searchUnitName');
+        if ($searchUnitName.value !== '') {
+          const searchUnitName = encodeURI($searchUnitName.value);
+          page.show(`${window.location.pathname}?search=${searchUnitName}`, ctx.state);
+        } else {
+          page.show(`${window.location.pathname}`, ctx.state);
+        }
+      });
+    } else {
+      closeMenu();
+      requestUnits().then(data => {
+        const units = [];
+        for (const unit of data) {
+          delete unit.spRecommendation;
+          delete unit.gender;
+          delete unit.artwork;
+          delete unit.gender;
+          units.push(unit);
+        }
+        ctx.state.units = units;
+        ctx.save();
+
+        const begin = 0;
+        const end = 100;
+        renderUnitsContent(units.slice(begin, end));
+
+        // Observe units content
+        observeUnitsContent(units);
+
+        document.querySelector('form').addEventListener('submit', (e) => {
+          e.preventDefault();
+          const $searchUnitName = document.getElementById('searchUnitName');
+          if ($searchUnitName.value !== '') {
+            const searchUnitName = encodeURI($searchUnitName.value);
+            page.show(`${window.location.pathname}?search=${searchUnitName}`, ctx.state);
+          } else {
+            page.show(`${window.location.pathname}`, ctx.state);
+          }
+        });
+      })
+    }
   }
 }
 
