@@ -29,6 +29,7 @@ export default function renderUnitsContent(units) {
 </form>
   `);
 
+  document.querySelector('main').appendChild($form);
   if (Array.isArray(units) && units.length > 0) {
     const fragement = document.createDocumentFragment();
     const $ul = document.createElement('ul');
@@ -42,12 +43,10 @@ export default function renderUnitsContent(units) {
     }
     $ul.appendChild(fragement);
     document.querySelector('main').appendChild($ul);
-    document.querySelector('main').insertBefore($form, $ul);
   } else {
     const $p = document.createElement('p');
     $p.setAttribute('class', 'text-center mt-4');
     $p.innerHTML = `<strong>Opps.. Not found. :(</strong>`;
     document.querySelector('main').appendChild($p);
-    document.querySelector('main').insertBefore($form, $p);
   }
 }
