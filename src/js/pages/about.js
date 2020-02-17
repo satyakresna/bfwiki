@@ -4,7 +4,7 @@ export function about() {
   closeMenu();
   document.querySelector('main').textContent = '';
   const $about = document.createRange().createContextualFragment(`
-    <article class="my-8 m-auto">
+    <article class="m-8">
       <h1 class="text-3xl mb-4"><strong>About</strong></h1>
       <p class="mb-4">This website likes a wiki to compile list of omni units and their SP. 
       <br>
