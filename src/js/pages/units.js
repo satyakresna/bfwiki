@@ -2,7 +2,6 @@ import { closeMenu } from "../utils/utils.js";
 import { requestUnits } from "../utils/request.js";
 import renderUnitsContent from "../components/units/renderUnitsContent.js";
 import observeUnitsContent from "../components/units/observeUnitsContent.js";
-import observeUnitsThumbnail from "../components/units/observeUnitsThumbnail.js";
 import searchUnits from "../components/units/searchUnits.js";
 
 export function units(ctx) {
@@ -45,7 +44,7 @@ export function units(ctx) {
         document.getElementById('searchUnitElement').value = searchUnitElement;
       }
 
-      observeUnitsThumbnail();
+      observeUnitsContent(filteredUnits);
 
       searchUnits(ctx);
     } else {
@@ -82,7 +81,7 @@ export function units(ctx) {
           document.getElementById('searchUnitElement').value = searchUnitElement;
         }
 
-        observeUnitsThumbnail();
+        observeUnitsContent(filteredUnits);
 
         searchUnits(ctx);
       })
