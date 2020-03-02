@@ -1,5 +1,6 @@
 const gulp = require('gulp');
 const rename = require('gulp-rename');
+const inject = require('gulp-inject-string');
 const browserSync = require('browser-sync').create();
 const postcss = require('gulp-postcss');
 const historyApiFallback = require('connect-history-api-fallback');
@@ -90,6 +91,27 @@ gulp.task('browserSync', function () {
   });
 
   gulp.watch('./src/css/style.css', gulp.series('css')).on('change', browserSync.reload);
+});
+
+gulp.task('inject:analytics', function (done) {
+  gulp.src('src/index.html')
+    .pipe(inject.before('</head>',  `
+    <link rel="preconnect" href="https://www.google-analytics.com">
+    <script defer src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- Google Analytics -->
+    <script defer>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-130613302-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+    `))
+    .pipe(rename('index.html'))
+    .pipe(gulp.dest('dist'));
+    done();
 });
 
 // For production
