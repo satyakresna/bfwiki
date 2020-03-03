@@ -64,7 +64,7 @@ gulp.task('js-components', async function () {
 });
 
 gulp.task('js', async function () {
-  gulp.src('./src/js/app.js')
+  gulp.src('./src/js/**')
     .pipe(gulp.dest('./dist/js/'))
     .pipe(browserSync.reload({
       stream: true
@@ -73,12 +73,9 @@ gulp.task('js', async function () {
 
 gulp.task('watch', async function () {
   gulp.watch('./src/assets/**', gulp.series('assets'));
-  gulp.watch('./src/js/plugins/**', gulp.series('js-plugins'));
-  gulp.watch('./src/js/utils/**', gulp.series('js-utils'));
-  gulp.watch('./src/js/pages/**', gulp.series('js-pages'));
-  gulp.watch('./src/js/components/**', gulp.series('js-components'));
-  gulp.watch('./src/js/app.js', gulp.series('js'));
+  gulp.watch('./src/js/**', gulp.series('js'));
   gulp.watch(['./src/**/*.html'], gulp.series('html', 'css')).on('change', browserSync.reload);
+  gulp.watch('./src/css/style.css', gulp.series('css')).on('change', browserSync.reload);
 });
 
 gulp.task('browserSync', function () {
@@ -89,8 +86,6 @@ gulp.task('browserSync', function () {
       middleware: [ historyApiFallback() ]
     }
   });
-
-  gulp.watch('./src/css/style.css', gulp.series('css')).on('change', browserSync.reload);
 });
 
 gulp.task('inject:analytics', function (done) {
@@ -115,7 +110,7 @@ gulp.task('inject:analytics', function (done) {
 });
 
 // For production
-gulp.task('build', gulp.series('html', 'css', 'assets', 'js-plugins', 'js-utils', 'js-pages', 'js-components', 'js'));
+gulp.task('build', gulp.series('html', 'css', 'assets', 'js'));
 
 // For development
 gulp.task('default', gulp.series('build', 'watch', 'browserSync'));
