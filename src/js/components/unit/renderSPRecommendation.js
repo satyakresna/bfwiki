@@ -2,7 +2,7 @@ export default function renderSPRecommendation(spRecommendation) {
   const $section = document.createElement('section');
   $section.setAttribute('class', 'w-full')
   for (const sp of spRecommendation) {
-    var title, analysis;
+    var title, analysis, total;
     const fragment = document.createDocumentFragment();
     const $ul = document.createElement('ul');
     for (const item of sp) {
@@ -11,6 +11,9 @@ export default function renderSPRecommendation(spRecommendation) {
       }
       if (item.hasOwnProperty('analysis')) {
         analysis = item.analysis;
+      }
+      if (item.hasOwnProperty('total')) {
+        total = item.total;
       }
       if (item.hasOwnProperty('cost') && item.hasOwnProperty('option')) {
         const $li = document.createElement('li');
@@ -22,7 +25,10 @@ export default function renderSPRecommendation(spRecommendation) {
     $ul.appendChild(fragment);
     $section.innerHTML += `
       <div class="my-8">
-        ${ (title !== undefined) ? `<h2 class="mb-4"><strong>${title}</strong></h2>` : ''}
+        <div class="flex justify-between my-4 py-4">
+          ${ (title !== undefined) ? `<h2 class="text-xl"><strong>${title}</strong></h2>` : ''}
+          ${ (total !== undefined) ? `<button class="border rounded-full border-yellow-600 bg-blue-600 text-white w-10 h-10 text-center"><strong>${total}</strong></button>` : ''}
+        </div>
         ${$ul.outerHTML}
         ${ (analysis !== undefined) ? `<p class="mt-4 text-xs"><em>Analysis: ${analysis}</em></p>` : ''} 
       </div>
