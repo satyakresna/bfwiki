@@ -100,11 +100,6 @@ gulp.task('inject:analytics', function (done) {
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
       
       ga('create', 'UA-130613302-2', 'auto');
-
-      // Tracking virtual pageviews
-      console.log(window.location.pathname + window.location.search);
-      console.log(document.title);
-      ga('set', 'page', window.location.pathname + window.location.search);
       ga('send', 'pageview');
     </script>
     `))
