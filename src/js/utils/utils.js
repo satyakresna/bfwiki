@@ -16,10 +16,8 @@ export function setTransition() {
 
 export function trackUrl(ctx) {
   if (window.ga !== undefined) {
-    ga('set', 'page', {
-      page: ctx.canonicalPath,
-      title: document.title
-    });
+    console.log(ctx.canonicalPath);
+    ga('set', 'page', ctx.canonicalPath);
     ga('send', 'pageview');
   }
 }
