@@ -1,4 +1,5 @@
 import { requestUnits } from "../utils/request.js";
+import { trackUrl } from "../utils/utils.js";
 import unitTemplate from "../components/unit/unitTemplate.js";
 
 export function loadUnit(ctx, next) {
@@ -52,4 +53,6 @@ export function showUnit(ctx) {
       console.log('Not supported, sorry');
     }
   })
+
+  trackUrl(ctx);
 }

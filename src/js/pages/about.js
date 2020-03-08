@@ -1,7 +1,8 @@
-import { closeMenu } from "../utils/utils.js";
+import { closeMenu, trackUrl } from "../utils/utils.js";
 
-export function about() {
+export function about(ctx) {
   closeMenu();
+  document.title = 'About - Brave Frontier Wiki';
   document.querySelector('main').textContent = '';
   const $about = document.createRange().createContextualFragment(`
     <article class="m-8">
@@ -20,4 +21,6 @@ export function about() {
     </article>
   `)
   document.querySelector('main').appendChild($about);
+
+  trackUrl(ctx);
 }

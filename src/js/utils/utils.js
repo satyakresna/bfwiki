@@ -13,3 +13,13 @@ export function setTransition() {
     $sidebarMenu.style.transitionProperty = "none";
   }, 300);
 }
+
+export function trackUrl(ctx) {
+  if (window.ga !== undefined) {
+    ga('set', 'page', {
+      page: ctx.canonicalPath,
+      title: document.title
+    });
+    ga('send', 'pageview');
+  }
+}

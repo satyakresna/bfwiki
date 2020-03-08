@@ -1,4 +1,4 @@
-import { closeMenu } from "../utils/utils.js";
+import { closeMenu, trackUrl } from "../utils/utils.js";
 import { requestUnits } from "../utils/request.js";
 import renderUnitsContent from "../components/units/renderUnitsContent.js";
 import observeUnitsContent from "../components/units/observeUnitsContent.js";
@@ -127,4 +127,6 @@ export function units(ctx) {
       })
     }
   }
+  
+  trackUrl(ctx);
 }
