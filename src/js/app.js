@@ -13,6 +13,9 @@ document.onreadystatechange = function () {
     // Call it!
     page();
 
+    console.log(document.title);
+    console.log(window.location.pathname + window.location.search);
+
     document.getElementById('menuToggle').addEventListener('click', function () {
       setTransition();
     });
