@@ -5,7 +5,9 @@ import observeUnitsContent from "../components/units/observeUnitsContent.js";
 import searchUnits from "../components/units/searchUnits.js";
 
 export function units(ctx) {
+  console.log('ctx title before:', ctx.title);
   document.title = 'Brave Frontier Wiki';
+  console.log('ctx title after: ', ctx.title);
   document.querySelector('main').innerHTML = '';
   if (ctx.querystring !== '') {
     const searchParams = new URLSearchParams(ctx.querystring);
