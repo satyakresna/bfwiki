@@ -6,7 +6,7 @@ import searchUnits from "../components/units/searchUnits.js";
 
 export function units(ctx) {
   console.log('ctx title before:', ctx.title);
-  document.title = 'Brave Frontier Wiki';
+  document.title = ctx.title = 'Brave Frontier Wiki';
   console.log('ctx title after: ', ctx.title);
   document.querySelector('main').innerHTML = '';
   if (ctx.querystring !== '') {

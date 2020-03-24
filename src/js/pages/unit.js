@@ -31,7 +31,7 @@ export function loadUnit(ctx, next) {
 
 export function showUnit(ctx) {
   console.log('ctx title before', ctx.title);
-  document.title = `${ctx.unit.name} - ${ctx.title}`;
+  document.title = ctx.title = `${ctx.unit.name} - ${ctx.title}`;
   console.log('ctx title after', ctx.title);
   document.querySelector('main').innerHTML = unitTemplate(ctx.unit);
   const $shareBtn = document.getElementById('shareBtn');
