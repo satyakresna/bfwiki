@@ -2,7 +2,9 @@ import { closeMenu, trackUrl } from "../utils/utils.js";
 
 export function about(ctx) {
   closeMenu();
-  document.title = 'About - Brave Frontier Wiki';
+  console.log('ctx title before:', ctx.title);
+  document.title = ctx.title = `About - Brave Frontier Wiki`;
+  console.log('ctx title after:', ctx.title);
   document.querySelector('main').textContent = '';
   const $about = document.createRange().createContextualFragment(`
     <article class="m-8">
