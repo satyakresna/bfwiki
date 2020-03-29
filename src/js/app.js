@@ -3,6 +3,7 @@ import { loadUnit, showUnit } from "./pages/unit.js";
 import { notfound } from "./pages/notfound.js";
 import { about } from "./pages/about.js";
 import { setTransition } from "./utils/utils.js";
+import page from "./plugins/page.mjs";
 
 document.onreadystatechange = function () {
   if (document.readyState === 'complete') {
