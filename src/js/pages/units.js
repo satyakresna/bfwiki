@@ -44,7 +44,9 @@ export function units(ctx) {
         document.getElementById('searchUnitElement').value = searchUnitElement;
       }
 
-      observeUnitsContent(filteredUnits);
+      if (filteredUnits.length > 0) {
+        observeUnitsContent(filteredUnits);
+      }
 
       searchUnits(ctx);
     } else {
