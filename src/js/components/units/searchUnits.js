@@ -1,3 +1,5 @@
+import page from "../../plugins/page.mjs";
+
 export default function searchUnits(ctx) {
   document.querySelector('form').addEventListener('submit', (e) => {
     e.preventDefault();
