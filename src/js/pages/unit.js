@@ -30,9 +30,7 @@ export function loadUnit(ctx, next) {
 }
 
 export function showUnit(ctx) {
-  console.log('ctx title before:', ctx.title);
   document.title = ctx.title = `${ctx.unit.name} - Brave Frontier Wiki`;
-  console.log('ctx title after:', ctx.title);
   document.querySelector('main').innerHTML = unitTemplate(ctx.unit);
   const $shareBtn = document.getElementById('shareBtn');
   $shareBtn.addEventListener('click', (e) => {
