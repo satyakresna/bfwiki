@@ -1,7 +1,10 @@
-import { closeMenu, trackUrl } from "../utils/utils.js";
+import trackUrl from "../behaviours/trackUrl.js";
+import closeMenu from "../behaviours/closeMenu.js";
+import setActiveMenu from "../behaviours/setActiveMenu.js";
 
 export function about(ctx) {
   closeMenu();
+  setActiveMenu(ctx.path);
   console.log('ctx title before:', ctx.title);
   document.title = ctx.title = `About - Brave Frontier Wiki`;
   console.log('ctx title after:', ctx.title);

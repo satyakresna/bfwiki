@@ -19,24 +19,26 @@
 </head>
 
 <body class="bg-gray-300">
+  <div class="menu-underlay"></div>
   <div class="flex flex-col min-h-screen">
-    <header class="p-4 flex shadow bg-white">
-      <label for="menuToggle" class="sidebar-icon-toggle" aria-label="Toggle Menu" role="button">
+    <header class="p-4 flex shadow bg-white items-center">
+      <button class="header__hamburger-btn p-2 md:hidden" aria-label="Open menu">
         <img src="/assets/icons/list.svg" alt="" class="h-6 w-6">
-      </label>
-      <input type="checkbox" id="menuToggle">
-      <label for="menuToggle" aria-label="Hide Menu" role="presentation" class="menu-underlay"></label>
-      <a href="/" class="ml-12 md:ml-0">
+      </button>
+      <a href="/" class="ml-4 md:ml-0">
         <img src="/assets/icons/refresh.svg" alt="Refresh logo" width="50" height="50">
       </a>
       <nav id="sidebarMenu">
-        <label for="menuToggle" class="sidebar-icon-toggle" aria-label="">
-          <img src="/assets/icons/times.svg" alt="" class="h-6 w-6">
-        </label>
-        <ul class="md:flex md:items-center">
-          <li class="block lg:inline-block md:text-black font-bold m-0 md:mx-4">
-            <a href="/about">
-              About
+        <div class="flex border-b border-solid border-gray-500 md:border-none p-6 -ml-2 -mt-1 md:hidden">
+          <button class="nav__hide-btn p-2 ml-auto" aria-label="Close menu">
+            <img src="/assets/icons/times.svg" alt="" class="h-6 w-6">
+          </button>
+          <!-- You can put your logo here ;) -->
+        </div>
+        <ul class="flex flex-col md:flex-row md:items-center">
+          <li>
+            <a href="/about" class="block md:inline font-bold md:mx-4 hover:bg-gray-200">
+              TENTANG
             </a>
           </li>
         </ul>

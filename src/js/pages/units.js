@@ -1,4 +1,5 @@
-import { closeMenu, trackUrl } from "../utils/utils.js";
+import trackUrl from "../behaviours/trackUrl.js";
+import closeMenu from "../behaviours/closeMenu.js";
 import { requestUnits } from "../utils/request.js";
 import renderUnitsContent from "../components/units/renderUnitsContent.js";
 import observeUnitsContent from "../components/units/observeUnitsContent.js";

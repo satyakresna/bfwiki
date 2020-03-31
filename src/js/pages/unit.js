@@ -1,5 +1,5 @@
 import { requestUnits } from "../utils/request.js";
-import { trackUrl } from "../utils/utils.js";
+import trackUrl from "../behaviours/trackUrl.js";
 import unitTemplate from "../components/unit/unitTemplate.js";
 
 export function loadUnit(ctx, next) {

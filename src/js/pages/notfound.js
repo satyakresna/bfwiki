@@ -1,4 +1,4 @@
-import { closeMenu } from "../utils/utils.js";
+import closeMenu from "../behaviours/closeMenu.js";
 
 export function notfound() {
   closeMenu();
