@@ -1,4 +1,4 @@
-export default function renderSPRecommendation(spRecommendation) {
+export default function (spRecommendation) {
   const $section = document.createElement('section');
   $section.setAttribute('class', 'w-full')
   for (const sp of spRecommendation) {
