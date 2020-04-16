@@ -1,6 +1,6 @@
 import { requestUnits } from "../utils/request.js";
 import trackUrl from "../behaviours/trackUrl.js";
-import unitTemplate from "../components/unit/unitTemplate.js";
+import UnitProfile from "../components/unit/Profile.js";
 
 export function loadUnit(ctx, next) {
   // check if we have .state.unit already available
@@ -31,7 +31,7 @@ export function loadUnit(ctx, next) {
 
 export function showUnit(ctx) {
   document.title = ctx.title = `${ctx.unit.name} - Brave Frontier Wiki`;
-  document.querySelector('main').innerHTML = unitTemplate(ctx.unit);
+  document.querySelector('main').innerHTML = UnitProfile(ctx.unit);
   const $shareBtn = document.getElementById('shareBtn');
   $shareBtn.addEventListener('click', (e) => {
     if (navigator.share) {

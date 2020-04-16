@@ -1,4 +1,4 @@
-export default function observeUnitsThumbnail() {
+export default function () {
   const $images = document.querySelectorAll('[data-src]');
   const config = {
     rootMargin: '0px 0px 50px 0px',

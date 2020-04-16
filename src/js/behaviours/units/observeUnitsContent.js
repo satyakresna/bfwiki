@@ -1,4 +1,4 @@
-import unitsTemplate from "./unitsTemplate.js";
+import UnitCard from "../../components/unit/Card.js";
 import observeUnitsThumbnail from "./observeUnitsThumbnail.js";
 
 export default function observeUnitsContent(units) {
@@ -14,10 +14,7 @@ export default function observeUnitsContent(units) {
         const nextUnits = units.slice(begin, end);
         const fragement = document.createDocumentFragment();
         for (const unit of nextUnits) {
-          const $li = document.createElement('li');
-          $li.setAttribute('class', 'flex flex-col items-center p-4 m-4 w-1/2 md:w-1/6 bg-white shadow unit');
-          $li.innerHTML = unitsTemplate(unit);
-          fragement.appendChild($li);
+          fragement.appendChild(UnitCard(unit));
         }
         document.querySelector('ul#unitList').appendChild(fragement);
         observeUnitsContent(units);

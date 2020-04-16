@@ -1,4 +1,4 @@
-import page from "../plugins/page.mjs";
+import page from "../../plugins/page.mjs";
 
 export default function (ctx) {
   document.querySelector('form').addEventListener('submit', (e) => {

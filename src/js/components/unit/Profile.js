@@ -1,6 +1,6 @@
-import renderSPRecommendation from "./renderSPRecommendation.js";
+import SPRecommendation from "./SPRecommendation.js";
 
-export default function unitTemplate(unit) {
+export default function (unit) {
   return `
   <article class="flex flex-col items-center m-auto w-full md:w-1/2 p-4 bg-white my-8">
     <img src="${unit.artwork}" alt="${unit.name}'s artwork" width="300" height="300" />
@@ -8,7 +8,7 @@ export default function unitTemplate(unit) {
       <h1 class="text-2xl"><strong>${unit.name}</strong></h1>
       <p class="text-sm">${unit.element}</p>
     </div>
-    ${unit.hasOwnProperty('spRecommendation') ? renderSPRecommendation(unit.spRecommendation) : ''}
+    ${unit.hasOwnProperty('spRecommendation') ? SPRecommendation(unit.spRecommendation) : ''}
   </article>
   <div class="flex flex-col items-end fixed z-1000" style="bottom: 24px; right: 24px;">
     <button type="button" id="shareBtn" class="relative rounded-full shadow border bg-white hover:bg-gray-100 text-gray-800 border-gray-400 p-4 mt-4">
