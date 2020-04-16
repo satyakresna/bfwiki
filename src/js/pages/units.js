@@ -3,7 +3,7 @@ import closeMenu from "../behaviours/closeMenu.js";
 import { requestUnits } from "../utils/request.js";
 import UnitsContent from "../components/units/UnitsContent.js";
 import observeUnitsContent from "../components/units/observeUnitsContent.js";
-import searchUnits from "../components/units/searchUnits.js";
+import searchUnits from "../behaviours/searchUnits.js";
 
 export function units(ctx) {
   document.title = ctx.title = 'Brave Frontier Wiki';
