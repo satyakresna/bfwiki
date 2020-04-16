@@ -1,6 +1,6 @@
 import UnitCard from "./UnitCard.js";
 
-export default function renderUnitsContent(units) {
+export default function (units) {
   // Search form
   const $form = document.createRange().createContextualFragment(`
   <form method="GET" class="w-3/4 mx-auto py-2 my-4">

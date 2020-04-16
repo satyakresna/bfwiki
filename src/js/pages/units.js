@@ -1,7 +1,7 @@
 import trackUrl from "../behaviours/trackUrl.js";
 import closeMenu from "../behaviours/closeMenu.js";
 import { requestUnits } from "../utils/request.js";
-import renderUnitsContent from "../components/units/renderUnitsContent.js";
+import UnitsContent from "../components/units/UnitsContent.js";
 import observeUnitsContent from "../components/units/observeUnitsContent.js";
 import searchUnits from "../components/units/searchUnits.js";
 
@@ -35,7 +35,7 @@ export function units(ctx) {
         });
       }
 
-      renderUnitsContent(filteredUnits);
+      UnitsContent(filteredUnits);
 
       if (searchUnitName !== null) {
         document.getElementById('searchUnitName').value = searchUnitName;
@@ -74,7 +74,7 @@ export function units(ctx) {
           });
         }
 
-        renderUnitsContent(filteredUnits);
+        UnitsContent(filteredUnits);
 
         if (searchUnitName !== null) {
           document.getElementById('searchUnitName').value = searchUnitName;
@@ -99,7 +99,7 @@ export function units(ctx) {
     if (ctx.state.units) {
       const begin = 0;
       const end = 100;
-      renderUnitsContent(ctx.state.units.slice(begin, end));
+      UnitsContent(ctx.state.units.slice(begin, end));
 
       // Observe units content
       observeUnitsContent(ctx.state.units);
@@ -121,7 +121,7 @@ export function units(ctx) {
 
         const begin = 0;
         const end = 100;
-        renderUnitsContent(units.slice(begin, end));
+        UnitsContent(units.slice(begin, end));
 
         // Observe units content
         observeUnitsContent(units);
