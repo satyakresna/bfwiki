@@ -1,4 +1,4 @@
-import UnitCard from "./UnitCard.js";
+import UnitCard from "../unit/Card.js";
 import SearchForm from "../SearchForm.js";
 
 export default function (units) {
