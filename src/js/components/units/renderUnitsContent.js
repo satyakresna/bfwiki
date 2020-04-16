@@ -1,4 +1,4 @@
-import unitsTemplate from "./unitsTemplate.js";
+import UnitCard from "./UnitCard.js";
 
 export default function renderUnitsContent(units) {
   // Search form
@@ -36,10 +36,7 @@ export default function renderUnitsContent(units) {
     $ul.setAttribute('id', 'unitList');
     $ul.setAttribute('class', 'flex flex-col items-center md:flex-row md:flex-wrap md:justify-center');
     for (const unit of units) {
-      const $li = document.createElement('li');
-      $li.setAttribute('class', 'flex flex-col items-center p-4 m-4 w-1/2 md:w-1/6 bg-white shadow border border-gray-400 rounded');
-      $li.innerHTML = unitsTemplate(unit);
-      fragement.appendChild($li);
+      fragement.appendChild(UnitCard(unit));
     }
     $ul.appendChild(fragement);
     document.querySelector('main').appendChild($ul);
