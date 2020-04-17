@@ -31,38 +31,6 @@ gulp.task('assets', async function () {
     }))
 });
 
-gulp.task('js-plugins', async function () {
-  gulp.src('./src/js/plugins/**')
-    .pipe(gulp.dest('./dist/js/plugins/'))
-    .pipe(browserSync.reload({
-      stream: true
-    }));
-});
-
-gulp.task('js-utils', async function () {
-  gulp.src('./src/js/utils/**')
-    .pipe(gulp.dest('./dist/js/utils/'))
-    .pipe(browserSync.reload({
-      stream: true
-    }));
-});
-
-gulp.task('js-pages', async function () {
-  gulp.src('./src/js/pages/**')
-    .pipe(gulp.dest('./dist/js/pages/'))
-    .pipe(browserSync.reload({
-      stream: true
-    }));
-});
-
-gulp.task('js-components', async function () {
-  gulp.src('./src/js/components/**')
-    .pipe(gulp.dest('./dist/js/components/'))
-    .pipe(browserSync.reload({
-      stream: true
-    }));
-});
-
 gulp.task('js', async function () {
   gulp.src('./src/js/**')
     .pipe(gulp.dest('./dist/js/'))
