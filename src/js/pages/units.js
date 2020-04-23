@@ -5,7 +5,7 @@ import UnitsContent from "../components/units/UnitsContent.js";
 import observeUnitsContent from "../behaviours/units/observeUnitsContent.js";
 import searchUnits from "../behaviours/units/searchUnits.js";
 
-export function units(ctx) {
+export default function (ctx) {
   document.title = ctx.title = 'Brave Frontier Wiki';
   document.querySelector('main').innerHTML = '';
   if (ctx.querystring !== '') {

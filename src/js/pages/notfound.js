@@ -1,6 +1,6 @@
 import closeMenu from "../behaviours/closeMenu.js";
 
-export function notfound() {
+export default function () {
   closeMenu();
   document.querySelector('main').textContent = 'Not found';
 }

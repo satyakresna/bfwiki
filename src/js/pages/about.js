@@ -2,7 +2,7 @@ import trackUrl from "../behaviours/trackUrl.js";
 import closeMenu from "../behaviours/closeMenu.js";
 import setActiveMenu from "../behaviours/setActiveMenu.js";
 
-export function about(ctx) {
+export default function (ctx) {
   closeMenu();
   setActiveMenu(ctx.path);
   console.log('ctx title before:', ctx.title);
