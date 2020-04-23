@@ -1,5 +1,3 @@
-import page from "../../plugins/page.mjs";
-
 export default function (ctx) {
   document.querySelector('form').addEventListener('submit', (e) => {
     e.preventDefault();
@@ -22,8 +20,12 @@ function search(ctx) {
   }
   const queryString = new URLSearchParams(formData).toString();
   if (queryString !== '') {
-    page.show(`${window.location.pathname}?${queryString}`, ctx.state);
+    import("../../plugins/page.mjs").then(({ default: page }) => {
+      page.show(`${window.location.pathname}?${queryString}`, ctx.state);
+    });
   } else {
-    page.show(`${window.location.pathname}`, ctx.state);
+    import("../../plugins/page.mjs").then(({ default: page }) => {
+      page.show(`${window.location.pathname}`, ctx.state);
+    });
   }
 }
