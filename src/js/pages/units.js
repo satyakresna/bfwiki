@@ -1,3 +1,4 @@
+import setActiveMenu from "../behaviours/setActiveMenu.js";
 import trackUrl from "../behaviours/trackUrl.js";
 import closeMenu from "../behaviours/closeMenu.js";
 import { requestUnits } from "../utils/request.js";
@@ -6,6 +7,7 @@ import observeUnitsContent from "../behaviours/units/observeUnitsContent.js";
 import searchUnits from "../behaviours/units/searchUnits.js";
 
 export default function (ctx) {
+  setActiveMenu(ctx.path);
   document.title = ctx.title = 'Brave Frontier Wiki';
   document.querySelector('main').innerHTML = '';
   if (ctx.querystring !== '') {
