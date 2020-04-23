@@ -3,6 +3,7 @@ import Units from "./pages/units.js";
 import { loadUnit, showUnit } from "./pages/unit.js";
 import NotFound from "./pages/notfound.js";
 import About from "./pages/about.js";
+import openMenu from "./behaviours/openMenu.js";
 import closeMenu from "./behaviours/closeMenu.js";
 
 document.onreadystatechange = function () {
@@ -15,14 +16,7 @@ document.onreadystatechange = function () {
     page();
 
     document.querySelector('button.header__hamburger-btn').addEventListener('click', function () {
-      document.getElementById('sidebarMenu').style.transform = "translateX(0)";
-      document.getElementById('sidebarMenu').style.transition = "transform 250ms ease-in-out";
-      document.querySelector('div.menu-underlay').style.display = "block";
-      document.querySelector('div.menu-underlay').style.pointerEvents = "auto";
-      document.getElementById('sidebarMenu').addEventListener('transitionend', function (e) {
-        e.target.style.transitionProperty = "none";
-      });
-      document.body.style.overflow = "hidden";
+      openMenu();
     });
 
     document.querySelector('button.nav__hide-btn').addEventListener('click', function () {
