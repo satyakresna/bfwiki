@@ -99,8 +99,11 @@ gulp.task('inject:analytics', async function () {
   }
 });
 
-// For production
-gulp.task('build', gulp.series('html', 'css', 'assets', 'js', 'data'));
+// Build
+gulp.task('build', gulp.series('html', 'css', 'assets', 'js'));
 
-// For development
+// Development
 gulp.task('default', gulp.series('build', 'watch', 'browserSync'));
+
+// Production
+gulp.task('production', gulp.series('build', 'inject:analytics'));

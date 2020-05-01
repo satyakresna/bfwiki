@@ -1,5 +1,6 @@
 [build]
-  command = "NODE_ENV=production gulp build && NODE_ENV=production gulp inject:analytics"
+  publish = "dist/"
+  command = "NODE_ENV=production gulp production"
 
 [[redirects]]
 from = "/*"
