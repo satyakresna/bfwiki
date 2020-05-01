@@ -1,4 +1,4 @@
-import page from "./plugins/page.mjs";
+import page from "page";
 import Units from "./pages/units.js";
 import { loadUnit, showUnit } from "./pages/unit.js";
 import NotFound from "./pages/notfound.js";

@@ -6,6 +6,7 @@ const inject = require('gulp-inject-string');
 const historyApiFallback = require('connect-history-api-fallback');
 const rollup = require('rollup');
 const { terser } = require('rollup-plugin-terser');
+const resolve = require('@rollup/plugin-node-resolve');
 
 gulp.task('css', async function() {
   gulp.src('./src/css/style.css')
@@ -31,6 +32,7 @@ gulp.task('js', async function () {
   return rollup.rollup({
     input: './src/js/app.js',
     plugins: [
+      resolve(),
       terser()
     ]
   })
@@ -38,6 +40,9 @@ gulp.task('js', async function () {
     return bundle.write({
       dir: './dist/js',
       format: 'es',
+      globals: {
+        page: 'page'
+      },
       sourcemap: true,
       compact: true
     })

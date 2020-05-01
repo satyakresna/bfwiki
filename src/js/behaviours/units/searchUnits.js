@@ -20,11 +20,11 @@ function search(ctx) {
   }
   const queryString = new URLSearchParams(formData).toString();
   if (queryString !== '') {
-    import("../../plugins/page.mjs").then(({ default: page }) => {
+    import("page").then(({ default: page }) => {
       page.show(`${window.location.pathname}?${queryString}`, ctx.state);
     });
   } else {
-    import("../../plugins/page.mjs").then(({ default: page }) => {
+    import("page").then(({ default: page }) => {
       page.show(`${window.location.pathname}`, ctx.state);
     });
   }
