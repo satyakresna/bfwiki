@@ -113,9 +113,7 @@ export default function (ctx) {
         const units = [];
         for (const unit of data) {
           delete unit.spRecommendation;
-          delete unit.gender;
-          delete unit.artwork;
-          delete unit.gender;
+          delete unit.cost;
           units.push(unit);
         }
         ctx.state.units = units;
