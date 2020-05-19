@@ -9,20 +9,20 @@ const { terser } = require('rollup-plugin-terser');
 const resolve = require('@rollup/plugin-node-resolve');
 
 gulp.task('css', async function() {
-  gulp.src('./src/css/style.css')
+  gulp.src('./src/client/css/style.css')
     .pipe(postcss())
     .pipe(rename('style.min.css'))
     .pipe(gulp.dest('./dist/css/'));
 });
 
 gulp.task('html', async function () {
-  gulp.src(['./src/**/.*html', './src/*.html'])
+  gulp.src(['./public/**/.*html', './public/*.html'])
     .pipe(gulp.dest('./dist/'));
 });
 
 gulp.task('assets', async function () {
-  gulp.src('./src/assets/**')
-    .pipe(gulp.dest('./dist/assets/'))
+  gulp.src('./public/icons/**')
+    .pipe(gulp.dest('./dist/icons/'))
     .pipe(browserSync.reload({
       stream: true
     }))
@@ -30,7 +30,7 @@ gulp.task('assets', async function () {
 
 gulp.task('js', async function () {
   return rollup.rollup({
-    input: './src/js/app.js',
+    input: './src/client/js/app.js',
     plugins: [
       resolve(),
       terser()
@@ -49,20 +49,11 @@ gulp.task('js', async function () {
   })
 });
 
-gulp.task('data', async function () {
-  gulp.src('./src/data/**')
-    .pipe(gulp.dest('./dist/data/'))
-    .pipe(browserSync.reload({
-      stream: true
-    }));
-})
-
 gulp.task('watch', async function () {
-  gulp.watch('./src/assets/**', gulp.series('assets'));
-  gulp.watch('./src/data/**', gulp.series('data'));
-  gulp.watch(['./src/**/*.html'], gulp.series('html', 'css')).on('change', browserSync.reload);
-  gulp.watch('./src/css/style.css', gulp.series('css')).on('change', browserSync.reload);
-  gulp.watch('./src/js/**', gulp.series('js')).on('change', browserSync.reload);
+  gulp.watch('./public/icons/**', gulp.series('assets'));
+  gulp.watch(['./public/**/*.html'], gulp.series('html', 'css')).on('change', browserSync.reload);
+  gulp.watch('./src/client/css/style.css', gulp.series('css')).on('change', browserSync.reload);
+  gulp.watch('./src/client/js/**', gulp.series('js')).on('change', browserSync.reload);
 });
 
 gulp.task('browserSync', function () {
@@ -78,7 +69,7 @@ gulp.task('browserSync', function () {
 gulp.task('inject:analytics', async function () {
   const GA_TRACKER_ID = process.env.GA_TRACKER_ID;
   if (GA_TRACKER_ID !== undefined) {
-    gulp.src('src/index.html')
+    gulp.src('public/index.html')
     .pipe(inject.before('</head>',  `
     <link rel="preconnect" href="https://www.google-analytics.com">
     <!-- Google Analytics -->
