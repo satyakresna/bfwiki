@@ -4,9 +4,9 @@ const cssnano = require('cssnano')({
 
 const purgecss = require('@fullhuman/postcss-purgecss')({
   content: [
-    './src/**/*.html',
-    './src/*.html',
-    './src/js/**/*.js',
+    './public/**/*.html',
+    './public/*.html',
+    './src/client/js/**/*.js',
   ],
   // Include any special characters you're using in this regular expression
   defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
