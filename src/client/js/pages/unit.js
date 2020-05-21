@@ -32,9 +32,15 @@ export function showUnit(ctx) {
   document.title = ctx.title = `${ctx.unit.name} - Brave Frontier Wiki`;
   import("../components/unit/Profile.js").then(({ default: UnitProfile }) => {
     document.querySelector('main').innerHTML = UnitProfile(ctx.unit);
-  });
-  import("../behaviours/unit/share.js").then(({ default: shareUnit }) => {
-    shareUnit();
+    document.getElementById('shareBtn').addEventListener('click', async (e) => {
+      e.preventDefault();
+      try {
+        const module = await import("../behaviours/unit/share.js");
+        module.default(ctx);
+      } catch (error) {
+        console.log(error);
+      }
+    })
   });
 
   trackUrl(ctx);
