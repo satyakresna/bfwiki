@@ -13,10 +13,10 @@ export default function (ctx) {
 function search(ctx) {
   const formData = new FormData(document.querySelector('form'));
   if (document.getElementById('searchUnitName').value !== '') {
-    formData.append('unitname', document.getElementById('searchUnitName').value);  
+    formData.append('name', document.getElementById('searchUnitName').value);  
   }
   if (document.getElementById('searchUnitElement').value !== '') {
-    formData.append('unitelement', document.getElementById('searchUnitElement').value);
+    formData.append('element', document.getElementById('searchUnitElement').value);
   }
   const queryString = new URLSearchParams(formData).toString();
   if (queryString !== '') {

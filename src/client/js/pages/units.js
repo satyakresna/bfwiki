@@ -10,28 +10,28 @@ export default function (ctx) {
   setActiveMenu(ctx.path);
   document.title = ctx.title = 'Brave Frontier Wiki';
   document.querySelector('main').innerHTML = '';
-  if (ctx.querystring !== '') {
+  if (ctx.querystring) {
     const searchParams = new URLSearchParams(ctx.querystring);
-    const searchUnitName = searchParams.get('unitname');
-    const searchUnitElement = searchParams.get('unitelement');
+    const searchName = searchParams.get('name');
+    const searchElement = searchParams.get('element');
 
     if (ctx.state.units) {
       let filteredUnits;
-      if (searchUnitName !== null && searchUnitElement !== null) {
+      if (searchName && searchElement) {
         filteredUnits = ctx.state.units.filter(item => {
-          if ((item.name.toLowerCase().indexOf(searchUnitName.toLowerCase()) > -1) && item.element === searchUnitElement) {
+          if ((item.name.toLowerCase().indexOf(searchName.toLowerCase()) > -1) && item.element === searchElement) {
             return item;
           }
         });
-      } else if (searchUnitName !== null && searchUnitElement === null) {
+      } else if (searchName) {
         filteredUnits = ctx.state.units.filter(item => {
-          if ((item.name.toLowerCase().indexOf(searchUnitName.toLowerCase()) > -1)) {
+          if ((item.name.toLowerCase().indexOf(searchName.toLowerCase()) > -1)) {
             return item;
           }
         });
-      } else if (searchUnitName === null && searchUnitElement !== null) {
+      } else if (searchElement) {
         filteredUnits = ctx.state.units.filter(item => {
-          if (item.element === searchUnitElement) {
+          if (item.element === searchElement) {
             return item;
           }
         });
@@ -39,12 +39,12 @@ export default function (ctx) {
 
       UnitsContent(filteredUnits);
 
-      if (searchUnitName !== null) {
-        document.getElementById('searchUnitName').value = searchUnitName;
+      if (searchName) {
+        document.getElementById('searchUnitName').value = searchName;
       }
 
-      if (searchUnitElement !== null) {
-        document.getElementById('searchUnitElement').value = searchUnitElement;
+      if (searchElement) {
+        document.getElementById('searchUnitElement').value = searchElement;
       }
 
       if (filteredUnits.length > 0) {
@@ -56,21 +56,21 @@ export default function (ctx) {
       requestUnits().then(data => {
         let filteredUnits;
 
-        if (searchUnitName !== null && searchUnitElement !== null) {
+        if (searchName && searchElement) {
           filteredUnits = data.filter(item => {
-            if ((item.name.toLowerCase().indexOf(searchUnitName) > -1) && item.element === searchUnitElement) {
+            if ((item.name.toLowerCase().indexOf(searchName) > -1) && item.element === searchElement) {
               return item;
             }
           });
-        } else if (searchUnitName !== null && searchUnitElement === null) {
+        } else if (searchName) {
           filteredUnits = data.filter(item => {
-            if ((item.name.toLowerCase().indexOf(searchUnitName) > -1)) {
+            if ((item.name.toLowerCase().indexOf(searchName) > -1)) {
               return item;
             }
           });
-        } else if (searchUnitName === null && searchUnitElement !== null) {
+        } else if (searchElement) {
           filteredUnits = data.filter(item => {
-            if (item.element === searchUnitElement) {
+            if (item.element === searchElement) {
               return item;
             }
           });
@@ -78,12 +78,12 @@ export default function (ctx) {
 
         UnitsContent(filteredUnits);
 
-        if (searchUnitName !== null) {
-          document.getElementById('searchUnitName').value = searchUnitName;
+        if (searchName) {
+          document.getElementById('searchUnitName').value = searchName;
         }
   
-        if (searchUnitElement !== null) {
-          document.getElementById('searchUnitElement').value = searchUnitElement;
+        if (searchElement) {
+          document.getElementById('searchUnitElement').value = searchElement;
         }
 
         observeUnitsContent(filteredUnits);
@@ -93,7 +93,7 @@ export default function (ctx) {
       .catch(error => {
         const $p = document.createElement('p');
         $p.setAttribute('class', 'text-center m-auto font-bold');
-        $p.textContent = 'Opps, failed to get omni units. Please try again in 3 minutes...';
+        $p.textContent = 'Opps, failed to get omni units. Please try again...';
         document.querySelector('main').appendChild($p);
       });
     }
@@ -108,7 +108,6 @@ export default function (ctx) {
 
       searchUnits(ctx);
     } else {
-      closeMenu();
       requestUnits().then(data => {
         const units = [];
         for (const unit of data) {
@@ -130,6 +129,6 @@ export default function (ctx) {
       })
     }
   }
-  
+  closeMenu();
   trackUrl(ctx);
 }
