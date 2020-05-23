@@ -25,7 +25,6 @@ export function loadUnit(ctx, next) {
 }
 
 export function showUnit(ctx) {
-  console.log(ctx);
   trackUrl(ctx);
   document.title = ctx.title = `${ctx.state.unit.name} - Brave Frontier Wiki`;
   import("../components/unit/Profile.js").then(({ default: UnitProfile }) => {
