@@ -1,6 +1,5 @@
 import setActiveMenu from "../behaviours/setActiveMenu.js";
 import trackUrl from "../behaviours/trackUrl.js";
-import closeMenu from "../behaviours/closeMenu.js";
 import { requestUnits } from "../utils/request.js";
 import UnitsContent from "../components/units/UnitsContent.js";
 import observeUnitsContent from "../behaviours/units/observeUnitsContent.js";
