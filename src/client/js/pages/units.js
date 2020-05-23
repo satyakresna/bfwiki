@@ -10,7 +10,7 @@ export default function (ctx) {
   trackUrl(ctx);
   setActiveMenu(ctx.path);
   document.title = ctx.title = 'Brave Frontier Wiki';
-  document.querySelector('main').innerHTML = '';
+  document.querySelector('main').textContent = '';
   if (ctx.querystring) {
     const searchParams = new URLSearchParams(ctx.querystring);
     const searchName = searchParams.get('name');
