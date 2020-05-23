@@ -16,9 +16,10 @@ export default function (units) {
     $ul.appendChild(fragement);
     document.querySelector('main').appendChild($ul);
   } else {
-    const $p = document.createElement('p');
-    $p.setAttribute('class', 'text-center mt-4');
-    $p.innerHTML = `<strong>Opps.. Not found. :(</strong>`;
-    document.querySelector('main').appendChild($p);
+    document.querySelector('main').appendChild(document.createRange().createContextualFragment(`
+      <p class="text-center mt-4">
+        <strong>Opps.. Not found. :(</strong>
+      </p>
+    `));
   }
 }
