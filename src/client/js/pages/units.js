@@ -15,30 +15,8 @@ export default function (ctx) {
     const searchName = searchParams.get('name');
     const searchElement = searchParams.get('element');
 
-    requestUnits().then(data => {
-      let filteredUnits;
-
-      if (searchName && searchElement) {
-        filteredUnits = data.filter(item => {
-          if ((item.name.toLowerCase().indexOf(searchName) > -1) && item.element === searchElement) {
-            return item;
-          }
-        });
-      } else if (searchName) {
-        filteredUnits = data.filter(item => {
-          if ((item.name.toLowerCase().indexOf(searchName) > -1)) {
-            return item;
-          }
-        });
-      } else if (searchElement) {
-        filteredUnits = data.filter(item => {
-          if (item.element === searchElement) {
-            return item;
-          }
-        });
-      }
-
-      UnitsContent(filteredUnits);
+    requestUnits(ctx.querystring).then(data => {
+      UnitsContent(data);
 
       if (searchName) {
         document.getElementById('searchUnitName').value = searchName;
@@ -48,7 +26,7 @@ export default function (ctx) {
         document.getElementById('searchUnitElement').value = searchElement;
       }
 
-      observeUnitsContent(filteredUnits);
+      observeUnitsContent(data);
 
       searchUnits(ctx);
     })
@@ -60,16 +38,10 @@ export default function (ctx) {
     });
   } else {
     requestUnits().then(data => {
-      const units = [];
-      for (const unit of data) {
-        delete unit.spRecommendation;
-        delete unit.cost;
-        units.push(unit);
-      }
 
-      UnitsContent(units.slice(0, 100));
+      UnitsContent(data.slice(0, 100));
 
-      observeUnitsContent(units);
+      observeUnitsContent(data);
 
       searchUnits(ctx);
     });

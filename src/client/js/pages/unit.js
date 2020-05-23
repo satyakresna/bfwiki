@@ -1,4 +1,4 @@
-import { requestUnits } from "../utils/request.js";
+import { requestUnit } from "../utils/request.js";
 import trackUrl from "../behaviours/trackUrl.js";
 
 export function loadUnit(ctx, next) {
@@ -10,17 +10,13 @@ export function loadUnit(ctx, next) {
     return;
   }
 
-  requestUnits().then(data => {
-    for (const unit of data) {
-      if (unit.name === ctx.params.unit.split('_').join(' ')) {
-        ctx.state.unit = unit;
-        ctx.unit = unit;
-        ctx.save();
-        next();
-      }
-    }
+  requestUnit(ctx.params.unit).then(data => {
+    ctx.state.unit = data;
+    ctx.save();
+    next();
   })
   .catch(error => {
+    console.log(error);
     const $p = document.createElement('p');
     $p.setAttribute('class', 'text-center m-auto font-bold');
     $p.textContent = 'Opps, failed to get detail of unit. Please try again in 3 minutes...';
@@ -29,16 +25,17 @@ export function loadUnit(ctx, next) {
 }
 
 export function showUnit(ctx) {
+  console.log(ctx);
   trackUrl(ctx);
-  document.title = ctx.title = `${ctx.unit.name} - Brave Frontier Wiki`;
+  document.title = ctx.title = `${ctx.state.unit.name} - Brave Frontier Wiki`;
   import("../components/unit/Profile.js").then(({ default: UnitProfile }) => {
     document.querySelector('main').textContent = '';
-    document.querySelector('main').appendChild(UnitProfile(ctx.unit));
+    document.querySelector('main').appendChild(UnitProfile(ctx.state.unit));
     document.getElementById('shareBtn').addEventListener('click', async (e) => {
       e.preventDefault();
       try {
         const module = await import("../behaviours/unit/share.js");
-        module.default(ctx);
+        module.default(ctx.state.unit);
       } catch (error) {
         console.log(error);
       }
