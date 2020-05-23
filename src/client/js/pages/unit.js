@@ -29,6 +29,7 @@ export function loadUnit(ctx, next) {
 }
 
 export function showUnit(ctx) {
+  trackUrl(ctx);
   document.title = ctx.title = `${ctx.unit.name} - Brave Frontier Wiki`;
   import("../components/unit/Profile.js").then(({ default: UnitProfile }) => {
     document.querySelector('main').innerHTML = UnitProfile(ctx.unit);
@@ -42,6 +43,4 @@ export function showUnit(ctx) {
       }
     })
   });
-
-  trackUrl(ctx);
 }

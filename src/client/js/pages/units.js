@@ -7,6 +7,7 @@ import observeUnitsContent from "../behaviours/units/observeUnitsContent.js";
 import searchUnits from "../behaviours/units/searchUnits.js";
 
 export default function (ctx) {
+  trackUrl(ctx);
   setActiveMenu(ctx.path);
   document.title = ctx.title = 'Brave Frontier Wiki';
   document.querySelector('main').innerHTML = '';
@@ -74,6 +75,4 @@ export default function (ctx) {
       searchUnits(ctx);
     });
   }
-  closeMenu();
-  trackUrl(ctx);
 }
