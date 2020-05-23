@@ -1,5 +1,6 @@
 import { requestUnit } from "../utils/request.js";
 import trackUrl from "../behaviours/trackUrl.js";
+import setOgMeta from "../behaviours/setOgMeta.js";
 
 export function loadUnit(ctx, next) {
   // check if we have .state.unit already available
@@ -27,6 +28,7 @@ export function loadUnit(ctx, next) {
 export function showUnit(ctx) {
   trackUrl(ctx);
   document.title = ctx.title = `${ctx.state.unit.name} - Brave Frontier Wiki`;
+  setOgMeta(ctx);
   import("../components/unit/Profile.js").then(({ default: UnitProfile }) => {
     document.querySelector('main').textContent = '';
     document.querySelector('main').appendChild(UnitProfile(ctx.state.unit));
