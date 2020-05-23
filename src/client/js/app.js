@@ -24,3 +24,5 @@ document.querySelector('button.nav__hide-btn').addEventListener('click', functio
 document.querySelector('div.menu-underlay').addEventListener('click', function () {
   closeMenu();
 });
+
+window.prerenderReady = true;
