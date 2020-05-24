@@ -29,6 +29,8 @@ export function showUnit(ctx) {
   trackUrl(ctx);
   document.title = ctx.title = `${ctx.state.unit.name} - Brave Frontier Wiki`;
   setOgMeta(ctx);
+  // Scroll to the top page.
+  window.scrollTo(0, 0);
   import("../components/unit/Profile.js").then(({ default: UnitProfile }) => {
     document.querySelector('main').textContent = '';
     document.querySelector('main').appendChild(UnitProfile(ctx.state.unit));
