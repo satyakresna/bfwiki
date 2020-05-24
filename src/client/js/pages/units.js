@@ -1,11 +1,9 @@
 import setActiveMenu from "../behaviours/setActiveMenu.js";
 import trackUrl from "../behaviours/trackUrl.js";
 import { requestUnits } from "../utils/request.js";
-import UnitsContent from "../components/units/UnitsContent.js";
-import observeUnitsContent from "../behaviours/units/observeUnitsContent.js";
 import SearchForm from "../components/SearchForm.js";
-import searchUnits from "../behaviours/units/searchUnits.js";
 import closeMenu from "../behaviours/closeMenu.js";
+import searchUnits from "../behaviours/units/searchUnits.js";
 
 export default function (ctx) {
   closeMenu();
@@ -28,11 +26,13 @@ export default function (ctx) {
     }
 
     requestUnits(ctx.querystring).then(data => {
-      UnitsContent(data);
+      import("../components/units/UnitsContent.js").then(module => {
+        module.default(data.slice(0, 100));
+      });
 
-      observeUnitsContent(data);
-
-      searchUnits(ctx);
+      import("../behaviours/units/observeUnitsContent.js").then(module => {
+        module.default(data);
+      });
     })
     .catch(error => {
       const $p = document.createElement('p');
@@ -42,12 +42,23 @@ export default function (ctx) {
     });
   } else {
     requestUnits().then(data => {
+      import("../components/units/UnitsContent.js").then(module => {
+        module.default(data.slice(0, 100));
+      });
 
-      UnitsContent(data.slice(0, 100));
-
-      observeUnitsContent(data);
-
-      searchUnits(ctx);
+      import("../behaviours/units/observeUnitsContent.js").then(module => {
+        module.default(data);
+      });
     });
+  }
+
+  document.querySelector('form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    searchUnits(ctx);
+  });
+
+  document.getElementById('searchUnitElement').onchange = (e) => {
+    e.preventDefault();
+    searchUnits(ctx);
   }
 }
