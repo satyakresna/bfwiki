@@ -5,8 +5,10 @@ import UnitsContent from "../components/units/UnitsContent.js";
 import observeUnitsContent from "../behaviours/units/observeUnitsContent.js";
 import SearchForm from "../components/SearchForm.js";
 import searchUnits from "../behaviours/units/searchUnits.js";
+import closeMenu from "../behaviours/closeMenu.js";
 
 export default function (ctx) {
+  closeMenu();
   trackUrl(ctx);
   setActiveMenu(ctx.path);
   document.title = ctx.title = 'Brave Frontier Wiki';
