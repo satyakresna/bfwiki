@@ -3,6 +3,7 @@ import trackUrl from "../behaviours/trackUrl.js";
 import { requestUnits } from "../utils/request.js";
 import UnitsContent from "../components/units/UnitsContent.js";
 import observeUnitsContent from "../behaviours/units/observeUnitsContent.js";
+import SearchForm from "../components/SearchForm.js";
 import searchUnits from "../behaviours/units/searchUnits.js";
 
 export default function (ctx) {
@@ -10,21 +11,22 @@ export default function (ctx) {
   setActiveMenu(ctx.path);
   document.title = ctx.title = 'Brave Frontier Wiki';
   document.querySelector('main').textContent = '';
+  document.querySelector('main').appendChild(SearchForm());
   if (ctx.querystring) {
     const searchParams = new URLSearchParams(ctx.querystring);
     const searchName = searchParams.get('name');
     const searchElement = searchParams.get('element');
 
+    if (searchName) {
+      document.getElementById('searchUnitName').value = searchName;
+    }
+
+    if (searchElement) {
+      document.getElementById('searchUnitElement').value = searchElement;
+    }
+
     requestUnits(ctx.querystring).then(data => {
       UnitsContent(data);
-
-      if (searchName) {
-        document.getElementById('searchUnitName').value = searchName;
-      }
-
-      if (searchElement) {
-        document.getElementById('searchUnitElement').value = searchElement;
-      }
 
       observeUnitsContent(data);
 

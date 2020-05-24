@@ -1,10 +1,6 @@
 import UnitCard from "../unit/Card.js";
-import SearchForm from "../SearchForm.js";
 
 export default function (units) {
-  // Search form
-  document.querySelector('main').appendChild(SearchForm());
-
   if (Array.isArray(units) && units.length > 0) {
     const fragement = document.createDocumentFragment();
     const $ul = document.createElement('ul');
