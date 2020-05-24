@@ -27,10 +27,6 @@ export default function (ctx) {
 
     requestUnits(ctx.querystring).then(data => {
       import("../components/units/Content.js").then(module => {
-        module.default(data.slice(0, 100));
-      });
-
-      import("../behaviours/units/observeContent.js").then(module => {
         module.default(data);
       });
     })
@@ -43,10 +39,6 @@ export default function (ctx) {
   } else {
     requestUnits().then(data => {
       import("../components/units/Content.js").then(module => {
-        module.default(data.slice(0, 100));
-      });
-
-      import("../behaviours/units/observeContent.js").then(module => {
         module.default(data);
       });
     });
