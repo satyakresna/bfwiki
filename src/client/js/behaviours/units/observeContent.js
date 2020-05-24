@@ -1,5 +1,5 @@
 import UnitCard from "../../components/unit/Card.js";
-import observeUnitsThumbnail from "./observeUnitsThumbnail.js";
+import observeUnitsThumbnail from "./observeThumbnails.js";
 
 export default function observeUnitsContent(units) {
   if (Array.isArray(units) && units.length > 0) {

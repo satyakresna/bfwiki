@@ -3,7 +3,7 @@ import trackUrl from "../behaviours/trackUrl.js";
 import { requestUnits } from "../utils/request.js";
 import SearchForm from "../components/SearchForm.js";
 import closeMenu from "../behaviours/closeMenu.js";
-import searchUnits from "../behaviours/units/searchUnits.js";
+import searchUnits from "../behaviours/units/search.js";
 
 export default function (ctx) {
   closeMenu();
@@ -26,11 +26,11 @@ export default function (ctx) {
     }
 
     requestUnits(ctx.querystring).then(data => {
-      import("../components/units/UnitsContent.js").then(module => {
+      import("../components/units/Content.js").then(module => {
         module.default(data.slice(0, 100));
       });
 
-      import("../behaviours/units/observeUnitsContent.js").then(module => {
+      import("../behaviours/units/observeContent.js").then(module => {
         module.default(data);
       });
     })
@@ -42,11 +42,11 @@ export default function (ctx) {
     });
   } else {
     requestUnits().then(data => {
-      import("../components/units/UnitsContent.js").then(module => {
+      import("../components/units/Content.js").then(module => {
         module.default(data.slice(0, 100));
       });
 
-      import("../behaviours/units/observeUnitsContent.js").then(module => {
+      import("../behaviours/units/observeContent.js").then(module => {
         module.default(data);
       });
     });
