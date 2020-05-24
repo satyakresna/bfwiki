@@ -46,11 +46,11 @@ export default function (ctx) {
 
   document.querySelector('form').addEventListener('submit', (e) => {
     e.preventDefault();
-    searchUnits(ctx);
+    searchUnits();
   });
 
   document.getElementById('searchUnitElement').onchange = (e) => {
     e.preventDefault();
-    searchUnits(ctx);
+    searchUnits();
   }
 }

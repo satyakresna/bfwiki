@@ -1,6 +1,6 @@
 import page from "page";
 
-export default function (ctx) {
+export default function () {
   const formData = new FormData(document.querySelector('form'));
   if (document.getElementById('searchUnitName').value) {
     formData.append('name', document.getElementById('searchUnitName').value);  
@@ -10,8 +10,8 @@ export default function (ctx) {
   }
   const queryString = new URLSearchParams(formData).toString();
   if (queryString) {
-    page.show(`${window.location.pathname}?${queryString}`, ctx.state);
+    page.show(`${window.location.pathname}?${queryString}`);
   } else {
-    page.show(`${window.location.pathname}`, ctx.state);
+    page.show(`${window.location.pathname}`);
   }
 }
