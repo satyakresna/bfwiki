@@ -28,11 +28,10 @@ export function loadUnit(ctx, next) {
 export function showUnit(ctx) {
   trackUrl(ctx);
   document.title = ctx.title = `${ctx.state.unit.name} - Brave Frontier Wiki`;
-  const ARTWORKS_URL = 'https://raw.githubusercontent.com/satyakresna/bravefrontier/master/src/omniunits/artworks';
   setOgMeta({
     title: ctx.state.unit.name,
     description: `${ctx.state.unit.name}'s Profile`,
-    image: `${ARTWORKS_URL}/${ctx.state.unit.id}.png`
+    image: `${ctx.state.unit.artwork}`
   });
   // Scroll to the top page.
   window.scrollTo(0, 0);
