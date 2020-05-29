@@ -12,45 +12,58 @@ export default function (ctx) {
   document.title = ctx.title = 'Brave Frontier Wiki';
   document.querySelector('main').textContent = '';
   document.querySelector('main').appendChild(SearchForm());
+  let filteredUnits;
+  if (ctx.state.units) {
+    filteredUnits = filterUnits(ctx);
+    import("../components/units/Content.js").then(module => {
+      module.default(filteredUnits);
+      searchUnits(ctx);
+    });
+  } else {
+    requestUnits().then(data => {
+      ctx.state.units = data;
+      ctx.save();
+      filteredUnits = filterUnits(ctx);
+      import("../components/units/Content.js").then(module => {
+        module.default(filteredUnits);
+        searchUnits(ctx);
+      });
+    });
+  }
+}
+
+function filterUnits(ctx) {
+  let filteredUnits;
   if (ctx.querystring) {
     const searchParams = new URLSearchParams(ctx.querystring);
     const searchName = searchParams.get('name');
     const searchElement = searchParams.get('element');
-
-    if (searchName) {
+    if (searchName && searchElement) {
       document.getElementById('searchUnitName').value = searchName;
-    }
-
-    if (searchElement) {
       document.getElementById('searchUnitElement').value = searchElement;
+      filteredUnits = ctx.state.units.filter(unit => {
+        if (unit.name.toLowerCase().includes(searchName) && unit.element === searchElement) {
+          return unit;
+        }
+      });
+    } else if (searchName) {
+      document.getElementById('searchUnitName').value = searchName;
+      filteredUnits = ctx.state.units.filter(unit => {
+        if (unit.name.toLowerCase().includes(searchName)) {
+          return unit;
+        }
+      });
+    } else if (searchElement) {
+      document.getElementById('searchUnitElement').value = searchElement;
+      filteredUnits = ctx.state.units.filter(unit => {
+        if (unit.element === searchElement) {
+          return unit;
+        }
+      });
     }
-
-    requestUnits(ctx.querystring).then(data => {
-      import("../components/units/Content.js").then(module => {
-        module.default(data);
-      });
-    })
-    .catch(error => {
-      const $p = document.createElement('p');
-      $p.setAttribute('class', 'text-center m-auto font-bold');
-      $p.textContent = 'Opps, failed to get omni units. Please try again...';
-      document.querySelector('main').appendChild($p);
-    });
   } else {
-    requestUnits().then(data => {
-      import("../components/units/Content.js").then(module => {
-        module.default(data);
-      });
-    });
+    filteredUnits = ctx.state.units;
   }
 
-  document.querySelector('form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    searchUnits();
-  });
-
-  document.getElementById('searchUnitElement').onchange = (e) => {
-    e.preventDefault();
-    searchUnits();
-  }
+  return filteredUnits;
 }
