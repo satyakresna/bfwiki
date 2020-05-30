@@ -26,6 +26,7 @@ export function loadUnit(ctx, next) {
 }
 
 export function showUnit(ctx) {
+  window.previousPage = window.scrollY;
   trackUrl(ctx);
   document.title = ctx.title = `${ctx.state.unit.name} - Brave Frontier Wiki`;
   setOgMeta({
@@ -33,8 +34,6 @@ export function showUnit(ctx) {
     description: `${ctx.state.unit.name}'s Profile`,
     image: `${ctx.state.unit.artwork}`
   });
-  // Scroll to the top page.
-  window.scrollTo(0, 0);
   import("../components/unit/Profile.js").then(({ default: UnitProfile }) => {
     document.querySelector('main').textContent = '';
     document.querySelector('main').appendChild(UnitProfile(ctx.state.unit));
@@ -46,7 +45,9 @@ export function showUnit(ctx) {
       } catch (error) {
         console.log(error);
       }
-    })
+    });
+    // Scroll to the top page.
+    window.scrollTo(0, 0);
   })
   .catch(error => console.log(error));
 }

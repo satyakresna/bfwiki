@@ -12,6 +12,9 @@ export default function (units) {
     }
     $ul.appendChild(fragement);
     document.querySelector('main').appendChild($ul);
+    if (window.previousPage) {
+      window.scrollTo(0, window.previousPage);
+    }
     observeUnitsContent(units);
   } else {
     document.querySelector('main').appendChild(document.createRange().createContextualFragment(`
