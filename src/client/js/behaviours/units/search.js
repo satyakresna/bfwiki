@@ -1,18 +1,18 @@
 import page from "page";
 
-export default function (ctx) {
+export default function () {
   document.querySelector('form').addEventListener('submit', (e) => {
     e.preventDefault();
-    search(ctx);
+    search();
   });
 
   document.getElementById('searchUnitElement').onchange = (e) => {
     e.preventDefault();
-    search(ctx);
+    search();
   }
 }
 
-function search (ctx) {
+function search () {
   const formData = new FormData(document.querySelector('form'));
   if (document.getElementById('searchUnitName').value) {
     formData.append('name', document.getElementById('searchUnitName').value);  

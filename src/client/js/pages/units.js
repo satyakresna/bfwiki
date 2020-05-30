@@ -17,7 +17,7 @@ export default function (ctx) {
     filteredUnits = filterUnits(ctx);
     import("../components/units/Content.js").then(module => {
       module.default(filteredUnits);
-      searchUnits(ctx);
+      searchUnits();
     });
   } else {
     requestUnits().then(data => {
@@ -26,7 +26,7 @@ export default function (ctx) {
       filteredUnits = filterUnits(ctx);
       import("../components/units/Content.js").then(module => {
         module.default(filteredUnits);
-        searchUnits(ctx);
+        searchUnits();
       });
     });
   }
