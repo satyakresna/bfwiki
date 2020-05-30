@@ -42,14 +42,14 @@ function filterUnits(ctx) {
       document.getElementById('searchUnitName').value = searchName;
       document.getElementById('searchUnitElement').value = searchElement;
       filteredUnits = ctx.state.units.filter(unit => {
-        if (unit.name.toLowerCase().includes(searchName) && unit.element === searchElement) {
+        if (unit.name.toLowerCase().includes(searchName.toLowerCase()) && unit.element === searchElement) {
           return unit;
         }
       });
     } else if (searchName) {
       document.getElementById('searchUnitName').value = searchName;
       filteredUnits = ctx.state.units.filter(unit => {
-        if (unit.name.toLowerCase().includes(searchName)) {
+        if (unit.name.toLowerCase().includes(searchName.toLowerCase())) {
           return unit;
         }
       });
