@@ -26,4 +26,8 @@ function search (ctx) {
   } else {
     page.show(`${window.location.pathname}`);
   }
+  // Set previous page position Y to 0 when searching
+  if (window.previousPage) {
+    window.previousPage = 0;
+  }
 }
