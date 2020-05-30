@@ -7,7 +7,7 @@ export default function (units) {
     const $ul = document.createElement('ul');
     $ul.setAttribute('id', 'unitList');
     $ul.setAttribute('class', 'flex flex-col items-center md:flex-row md:flex-wrap md:justify-center');
-    for (const unit of units.slice(0, 100)) {
+    for (const unit of units) {
       fragement.appendChild(UnitCard(unit));
     }
     $ul.appendChild(fragement);
@@ -15,7 +15,11 @@ export default function (units) {
     if (window.previousPage) {
       window.scrollTo(0, window.previousPage);
     }
-    observeUnitsContent(units);
+    if (window.units) {
+      observeUnitsContent(window.units);
+    } else {
+      observeUnitsContent(units);
+    }
   } else {
     document.querySelector('main').appendChild(document.createRange().createContextualFragment(`
       <p class="text-center mt-4">

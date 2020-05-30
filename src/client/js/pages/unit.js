@@ -34,6 +34,11 @@ export function showUnit(ctx) {
     description: `${ctx.state.unit.name}'s Profile`,
     image: `${ctx.state.unit.artwork}`
   });
+  if (window.units) {
+    window.lastUnitIndex = window.units.findIndex((unit) => {
+      return unit.name === ctx.state.unit.name;
+    });
+  }
   import("../components/unit/Profile.js").then(({ default: UnitProfile }) => {
     document.querySelector('main').textContent = '';
     document.querySelector('main').appendChild(UnitProfile(ctx.state.unit));
