@@ -11,7 +11,7 @@ export function loadUnit(ctx, next) {
     return;
   }
 
-  requestUnit(ctx.params.unit).then(data => {
+  requestUnit(encodeURIComponent(ctx.params.unit)).then(data => {
     ctx.state.unit = data;
     ctx.save();
     next();
