@@ -64,12 +64,12 @@ function filterUnits(ctx) {
   } else {
     filteredUnits = ctx.state.units;
   }
-  
+
   window.units = filteredUnits;
   let end = 99;
   if (window.lastUnitIndex && window.lastUnitIndex > end) {
     end = window.lastUnitIndex + 5;
   }
 
-  return filteredUnits.slice(0, end);
+  return (filteredUnits) ? filteredUnits.slice(0, end) : [].slice(0, end);
 }
