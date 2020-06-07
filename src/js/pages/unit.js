@@ -32,7 +32,8 @@ export function showUnit(ctx) {
   setOgMeta({
     title: ctx.state.unit.name,
     description: `${ctx.state.unit.name}'s Profile`,
-    image: `${ctx.state.unit.artwork}`
+    image: `${ctx.state.unit.artwork}`,
+    url: window.location.href
   });
   if (window.units) {
     window.selectedUnitIndex = window.units.findIndex((unit) => {
