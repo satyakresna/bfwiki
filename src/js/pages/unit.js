@@ -35,7 +35,7 @@ export function showUnit(ctx) {
     image: `${ctx.state.unit.artwork}`
   });
   if (window.units) {
-    window.lastUnitIndex = window.units.findIndex((unit) => {
+    window.selectedUnitIndex = window.units.findIndex((unit) => {
       return unit.name === ctx.state.unit.name;
     });
   }

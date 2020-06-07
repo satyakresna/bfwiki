@@ -67,8 +67,8 @@ function filterUnits(ctx) {
 
   window.units = filteredUnits;
   let end = 99;
-  if (window.lastUnitIndex && window.lastUnitIndex > end) {
-    end = window.lastUnitIndex + 5;
+  if (window.selectedUnitIndex && window.selectedUnitIndex > end) {
+    end = window.selectedUnitIndex + 5;
   }
 
   return (filteredUnits) ? filteredUnits.slice(0, end) : [].slice(0, end);
