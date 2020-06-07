@@ -6,7 +6,7 @@ const purgecss = require('@fullhuman/postcss-purgecss')({
   content: [
     './public/**/*.html',
     './public/*.html',
-    './src/client/js/**/*.js',
+    './src/js/**/*.js',
   ],
   // Include any special characters you're using in this regular expression
   defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
