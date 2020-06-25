@@ -22,29 +22,18 @@
 <body class="bg-gray-300">
   <div class="menu-underlay"></div>
   <div class="flex flex-col min-h-screen">
-    <header class="p-4 flex shadow bg-white items-center">
-      <button class="header__hamburger-btn p-2 md:hidden" aria-label="Open menu">
-        <img src="/icons/list.svg" alt="" class="h-6 w-6">
-      </button>
-      <a href="/" class="ml-4 md:ml-0">
+    <nav class="p-4 flex shadow bg-white items-center">
+      <a href="/">
         <img src="/icons/refresh.svg" alt="Refresh logo" width="50" height="50">
       </a>
-      <nav id="sidebarMenu">
-        <div class="flex border-b border-solid border-gray-500 md:border-none p-6 -ml-2 -mt-1 md:hidden">
-          <button class="nav__hide-btn p-2 ml-auto" aria-label="Close menu">
-            <img src="/icons/times.svg" alt="" class="h-6 w-6">
-          </button>
-          <!-- You can put your logo here ;) -->
-        </div>
-        <ul class="flex flex-col md:flex-row md:items-center">
-          <li>
-            <a href="/units" class="block md:inline font-bold md:mx-4 hover:bg-gray-200">
-              Units
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </header>
+      <ul class="navigation-list flex items-center ml-4">
+        <li>
+          <a href="/units" class="block md:inline font-bold md:mx-4 hover:bg-gray-200">
+            Units
+          </a>
+        </li>
+      </ul>
+    </nav>
 
     <main class="flex flex-col flex-auto">
 

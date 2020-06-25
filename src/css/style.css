@@ -23,13 +23,12 @@ body {
     will-change: transform;
 }
 
-#sidebarMenu li a {
+.navigation-list li a {
     padding: 1rem;
     border-top: 0;
-    border-bottom: 1px solid #ddd;
 }
 
-#sidebarMenu li a.active {
+.active {
     border-bottom: 2px solid #4299e1;
 }
 

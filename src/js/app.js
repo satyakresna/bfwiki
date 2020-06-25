@@ -13,16 +13,4 @@ page('*', NotFound);
 // Call it!
 page();
 
-document.querySelector('button.header__hamburger-btn').addEventListener('click', function () {
-  openMenu();
-});
-
-document.querySelector('button.nav__hide-btn').addEventListener('click', function () {
-  closeMenu();
-});
-
-document.querySelector('div.menu-underlay').addEventListener('click', function () {
-  closeMenu();
-});
-
 window.prerenderReady = true;
