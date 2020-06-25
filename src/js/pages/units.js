@@ -2,11 +2,9 @@ import setActiveMenu from "../behaviours/setActiveMenu.js";
 import trackUrl from "../behaviours/trackUrl.js";
 import { requestUnits } from "../utils/request.js";
 import SearchForm from "../components/SearchForm.js";
-import closeMenu from "../behaviours/closeMenu.js";
 import searchUnits from "../behaviours/units/search.js";
 
 export default function (ctx) {
-  closeMenu();
   trackUrl(ctx);
   setActiveMenu(ctx.path);
   document.title = ctx.title = 'Brave Frontier Wiki';
