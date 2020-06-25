@@ -5,8 +5,7 @@ export default function (units) {
   if (Array.isArray(units) && units.length > 0) {
     const fragement = document.createDocumentFragment();
     const $ul = document.createElement('ul');
-    $ul.setAttribute('id', 'unitList');
-    $ul.setAttribute('class', 'flex flex-col items-center md:flex-row md:flex-wrap md:justify-center');
+    $ul.setAttribute('id', 'unit-list');
     for (const unit of units) {
       fragement.appendChild(UnitCard(unit));
     }

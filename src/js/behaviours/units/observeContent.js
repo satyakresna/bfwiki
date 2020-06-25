@@ -3,8 +3,8 @@ import observeUnitsThumbnail from "./observeThumbnails.js";
 
 export default function observeUnitsContent(units) {
   if (Array.isArray(units) && units.length > 0) {
-    const lastElementChild = document.querySelector('ul#unitList').lastElementChild;
-    const childrenElement = document.querySelector('ul#unitList').children;
+    const lastElementChild = document.querySelector('ul#unit-list').lastElementChild;
+    const childrenElement = document.querySelector('ul#unit-list').children;
 
     // Observe and do infinite scroll
     let contentObserver = new IntersectionObserver(function (entries, self) {
@@ -17,7 +17,7 @@ export default function observeUnitsContent(units) {
           for (const unit of nextUnits) {
             fragement.appendChild(UnitCard(unit));
           }
-          document.querySelector('ul#unitList').appendChild(fragement);
+          document.querySelector('ul#unit-list').appendChild(fragement);
           observeUnitsContent(units);
         }
         self.unobserve(entries[0].target);
