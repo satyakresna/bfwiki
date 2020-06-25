@@ -124,6 +124,47 @@ body {
     @apply m-auto;
 }
 
+.unit-image.loading {
+    @apply rounded;
+    height: 50px; 
+    width: 50px;
+}
+
+.unit-card-name.loading {
+    height: 1rem; 
+    width: 200px; 
+    margin: 1rem;
+    border-radius: 3px; 
+}
+
+.loading {
+    @apply relative;
+    background-color: #e2e2e2;
+}
+
+.loading::after {
+    @apply block;
+    @apply absolute;
+    @apply w-full;
+    @apply h-full;
+    content: "";
+    @apply -translate-x-full;
+    background: -webkit-gradient(linear, left top, 
+                    right top, from(transparent),  
+                    color-stop(rgba(255, 255, 255, 0.2)), 
+                    to(transparent));              
+    background: linear-gradient(90deg, transparent, 
+            rgba(255, 255, 255, 0.2), transparent); 
+    /* Adding animation */
+    animation: loading 0.8s infinite; 
+}
+
+@keyframes loading {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
 .unit-card-name {
     @apply text-sm;
     @apply text-center;
