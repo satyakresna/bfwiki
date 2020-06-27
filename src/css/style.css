@@ -11,29 +11,60 @@ body {
     overflow-y: scroll;
 }
 
-.navigation-list li a {
-    padding: 1rem;
+main {
+    @apply flex;
+    @apply flex-col;
+    @apply flex-auto;
+}
+
+footer {
+    @apply p-4;
+    @apply mt-4;
+}
+
+.container {
+    @apply flex;
+    @apply flex-col;
+    @apply min-h-screen;
+    @apply max-w-full;
+}
+
+.navigation {
+    @apply h-20;
+    @apply p-4;
+    @apply flex;
+    @apply shadow;
+    @apply bg-white;
+    @apply items-center;
+}
+
+.navigation-list {
+    @apply flex; 
+    @apply items-center;
+    @apply ml-4;
+}
+
+.navigation-list__link {
+    @apply block;
+    @apply font-bold;
+    @apply p-4;
     border-top: 0;
+    @apply cursor-pointer;
+}
+
+@media screen and (min-width: 768px) {
+    .navigation-list__link {
+        @apply inline;
+        @apply mx-4;
+    }
+}
+
+.navigation-list__link:hover {
+    @apply bg-gray-300;
 }
 
 .active {
     border-bottom: 2px solid #4299e1;
-}
-
-@media (max-width: 767px) {
-    .menu-underlay {
-        display: none;
-        background: rgba(0,0,0,0.4);
-        opacity: 1;
-        pointer-events: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 1;
-        width: 100%;
-        height: 100vh;
-        transition: opacity .3s cubic-bezier(0,0,.31,1);
-    }
 }
 
 .about {
