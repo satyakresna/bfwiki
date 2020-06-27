@@ -16,7 +16,7 @@ gulp.task('css', async function() {
 });
 
 gulp.task('html', async function () {
-  gulp.src(['./src/**/.*html', './src/*.html'])
+  gulp.src(['./src/**/*.html', './src/*.html'])
     .pipe(gulp.dest('./dist/'));
 });
 
