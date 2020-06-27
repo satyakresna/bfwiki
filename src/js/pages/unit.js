@@ -10,7 +10,7 @@ export function loadUnit(ctx, next) {
     next();
     return;
   }
-
+  NProgress.start();
   requestUnit(encodeURIComponent(ctx.params.unit)).then(data => {
     ctx.state.unit = data;
     ctx.save();
@@ -54,6 +54,7 @@ export function showUnit(ctx) {
     });
     // Scroll to the top page.
     window.scrollTo(0, 0);
+    NProgress.done();
   })
   .catch(error => console.log(error));
 }
