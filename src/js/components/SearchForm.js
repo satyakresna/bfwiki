@@ -1,6 +1,6 @@
 export default function () {
   return document.createRange().createContextualFragment(`
-  <form method="GET" class="w-3/4 mx-auto py-2 my-4">
+  <form method="GET" class="form">
   <div class="relative mb-4">
     <span>
       <input class="focus:outline-0 bg-transparent border-b border-gray-500 focus:border-green-500 placeholder-gray-600 py-2 pr-4 pl-10 w-full appearance-none leading-normal" type="text" placeholder="Search the unit" id="searchUnitName">
