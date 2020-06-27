@@ -49,8 +49,14 @@ gulp.task('js', async function () {
   })
 });
 
+gulp.task('plugins', async function () {
+  gulp.src(['./src/plugins/**/*.css', './src/plugins/**/*.js'])
+  .pipe(gulp.dest('./dist/plugins'));
+});
+
 gulp.task('watch', async function () {
   gulp.watch('./src/icons/**', gulp.series('assets'));
+  gulp.watch('./src/plugins/**', gulp.series('plugins'));
   gulp.watch(['./src/**/*.html'], gulp.series('html', 'css')).on('change', browserSync.reload);
   gulp.watch('./src/css/style.css', gulp.series('css')).on('change', browserSync.reload);
   gulp.watch('./src/js/**', gulp.series('js')).on('change', browserSync.reload);
@@ -91,7 +97,7 @@ gulp.task('inject:analytics', async function () {
 });
 
 // Build
-gulp.task('build', gulp.series('html', 'css', 'assets', 'js'));
+gulp.task('build', gulp.series('html', 'css', 'assets', 'js', 'plugins'));
 
 // Development
 gulp.task('default', gulp.series('build', 'watch', 'browserSync'));
