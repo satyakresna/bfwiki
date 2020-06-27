@@ -1,20 +1,52 @@
+import { Notyf } from 'notyf';
+
 export default function (unit) {
+  const title = document.title;
+  const text = unit.name;
+  const url = document.querySelector('link[rel=canonical]') && document.querySelector('link[rel=canonical]').href || window.location.href;
   if (navigator.share) {
-    const title = document.title;
-    const text = unit.name;
-    const url = document.querySelector('link[rel=canonical]') && document.querySelector('link[rel=canonical]').href || window.location.href;
     navigator.share({
       title,
       text,
       url
     })
       .then(() => {
-        console.log('Successful share');
+        const notyf = new Notyf({
+          position: {
+            x: 'center',
+            y: 'bottom'
+          }
+        });
+        notyf.success('Share url success');
       })
       .catch(error => {
-        console.log('Error sharing', error);
+        const notyf = new Notyf({
+          position: {
+            x: 'center',
+            y: 'bottom'
+          }
+        });
+        notyf.error('Share url failed');
       })
   } else {
-    console.log('Not supported, sorry');
+    navigator.clipboard.writeText(`${title} ${url}`)
+      .then(() => {
+        const notyf = new Notyf({
+          position: {
+            x: 'center',
+            y: 'bottom'
+          }
+        });
+        notyf.success('Copy url success');
+      })
+      .catch(err => {
+        const notyf = new Notyf({
+          position: {
+            x: 'center',
+            y: 'bottom'
+          }
+        });
+        notyf.error('Copy url failed');
+      })
   }
 }
