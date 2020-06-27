@@ -16,12 +16,12 @@ gulp.task('css', async function() {
 });
 
 gulp.task('html', async function () {
-  gulp.src(['./public/**/.*html', './public/*.html'])
+  gulp.src(['./src/**/.*html', './src/*.html'])
     .pipe(gulp.dest('./dist/'));
 });
 
 gulp.task('assets', async function () {
-  gulp.src('./public/icons/**')
+  gulp.src('./src/icons/**')
     .pipe(gulp.dest('./dist/icons/'))
     .pipe(browserSync.reload({
       stream: true
@@ -50,8 +50,8 @@ gulp.task('js', async function () {
 });
 
 gulp.task('watch', async function () {
-  gulp.watch('./public/icons/**', gulp.series('assets'));
-  gulp.watch(['./public/**/*.html'], gulp.series('html', 'css')).on('change', browserSync.reload);
+  gulp.watch('./src/icons/**', gulp.series('assets'));
+  gulp.watch(['./src/**/*.html'], gulp.series('html', 'css')).on('change', browserSync.reload);
   gulp.watch('./src/css/style.css', gulp.series('css')).on('change', browserSync.reload);
   gulp.watch('./src/js/**', gulp.series('js')).on('change', browserSync.reload);
 });
@@ -69,7 +69,7 @@ gulp.task('browserSync', function () {
 gulp.task('inject:analytics', async function () {
   const GA_TRACKER_ID = process.env.GA_TRACKER_ID;
   if (GA_TRACKER_ID !== undefined) {
-    gulp.src('public/index.html')
+    gulp.src('src/index.html')
     .pipe(inject.before('</head>',  `
     <link rel="preconnect" href="https://www.google-analytics.com">
     <!-- Google Analytics -->
