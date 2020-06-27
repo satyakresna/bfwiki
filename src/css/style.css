@@ -11,18 +11,6 @@ body {
     overflow-y: scroll;
 }
 
-#sidebarMenu {
-    height: 100%;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 250px;
-    z-index: 2;
-    background: white;
-    transform: translateX(-250px);
-    will-change: transform;
-}
-
 .navigation-list li a {
     padding: 1rem;
     border-top: 0;
@@ -45,29 +33,6 @@ body {
         width: 100%;
         height: 100vh;
         transition: opacity .3s cubic-bezier(0,0,.31,1);
-    }
-}
-
-@media (min-width: 768px) {
-    .sidebar-icon-toggle {
-        display: none;
-    }
-
-    #sidebarMenu {
-        position: static;
-        left: auto;
-        top: auto;
-        height: auto;
-        display: block;
-        transform: none !important;
-        transition: none !important;
-        background: none;
-        width: auto;
-        z-index: auto;
-    }
-
-    #sidebarMenu li a {
-        border: none;
     }
 }
 
