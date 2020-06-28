@@ -1,6 +1,6 @@
 export default function () {
     return document.createRange().createContextualFragment(`
-    <div class="flex flex-col justify-center items-center m-auto">
+    <div class="flex flex-col justify-center items-center m-auto mt-32">
       <article class="mx-4">
         <h1 class="text-3xl my-4"><strong>Brave Frontier Wiki (Unofficial)</strong></h1>
         <div class="leading-loose">
