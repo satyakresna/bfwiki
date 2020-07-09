@@ -20,6 +20,7 @@ export default function (units) {
       observeUnitsContent(units);
     }
   } else {
+    document.querySelector('main #unit-list').remove();
     document.querySelector('main').appendChild(document.createRange().createContextualFragment(`
       <p class="text-center mt-4">
         <strong>Opps.. Not found. :(</strong>
