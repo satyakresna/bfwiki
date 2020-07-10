@@ -1,7 +1,7 @@
 export default function () {
     return document.createRange().createContextualFragment(`
     <div class="flex flex-col justify-center items-center m-auto">
-      <article>
+      <article class="p-4 mt-16">
         <h1 class="text-3xl my-4"><strong>Brave Frontier Wiki (Unofficial)</strong></h1>
         <div class="leading-loose">
           <p>This website provides list of omni units and their SP from Brave Frontier Global.</p>
