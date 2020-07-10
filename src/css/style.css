@@ -5,10 +5,12 @@
 @tailwind utilities;
 
 body {
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Overpass', sans-serif;
     width: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
+    @apply text-base;
+    @apply tracking-wider;
 }
 
 main {

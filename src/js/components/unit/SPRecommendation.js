@@ -7,7 +7,7 @@ export default function (spRecommendation) {
     const $ul = document.createElement('ul');
     for (const item of sp.list) {
       fragment.appendChild(document.createRange().createContextualFragment(
-        `<li class="flex text-sm justify-between items-center my-4 py-4 border-b">
+        `<li class="flex justify-between items-center my-4 py-4 border-b">
           <span class="w-9/12 inline-block">${item.option}</span> <button class="border rounded-full border-yellow-600 bg-blue-600 text-white w-10 h-10">${item.cost}</button>
         </li>`
       ));
@@ -22,7 +22,7 @@ export default function (spRecommendation) {
       ${$ul.outerHTML}
       ${sp.hasOwnProperty('analysis') 
         ? `<h3 class="mt-4 text-lg leading-loose"><strong>Analysis</strong></h3>
-        <p class="mt-4 text-sm leading-loose">${sp.analysis}</p>` 
+        <p class="mt-4 leading-loose">${sp.analysis}</p>` 
         : ''}
     </div>
   `));
