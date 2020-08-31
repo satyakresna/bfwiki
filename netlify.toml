@@ -1,6 +1,6 @@
 [build]
   publish = "dist/"
-  command = "NODE_ENV=production gulp production"
+  command = "NODE_ENV=production npm run build && npm run inject:analytics"
 
 [[redirects]]
 from = "/*"
