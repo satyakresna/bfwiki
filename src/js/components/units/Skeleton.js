@@ -4,12 +4,7 @@ export default function () {
     $ul.setAttribute('id', 'unit-list');
     for (let index = 0; index < 100; index++) {
         fragement.appendChild(document.createRange().createContextualFragment(`
-        <li class="unit-card">
-            <div class="unit-card-container">
-                <div class="unit-image loading"></div>
-                <p class="unit-card-name loading"><a href=""><strong></strong></a></p>
-            </div>
-        </li>
+        <li class="unit-card"></li>
         `));
     }
     $ul.appendChild(fragement);

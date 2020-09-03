@@ -4,6 +4,12 @@
 
 @tailwind utilities;
 
+:root {  
+    --card-height: 10rem;
+    --blur-width: 200px;
+    --blur-size: var(--blur-width) calc(var(--card-height));
+}
+
 body {
     font-family: 'Overpass', sans-serif;
     width: 100%;
@@ -118,7 +124,7 @@ footer {
     @apply flex-col;
     @apply items-center;
     @apply m-4;
-    @apply max-w-xs;
+    @apply p-4;
     @apply h-40;
     @apply bg-white;
     @apply shadow;
@@ -126,52 +132,40 @@ footer {
     @apply w-2/3;
 }
 
+.unit-card:empty {
+    background-image:
+    linear-gradient(90deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%), 
+    linear-gradient(lightgray 40px, transparent 0),
+    linear-gradient(lightgray 15px, transparent 0);
+
+    background-size: 
+    var(--blur-size),
+    40px 40px,
+    150px 40px;
+
+    background-position:
+    -150% 0, 
+    50% 40%,
+    50% 85%;
+
+    background-repeat: no-repeat;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    to {
+        background-position: 
+        350% 0,
+        50% 40%,
+        50% 85%;
+    }
+}
+
 .unit-card-container {
     @apply flex;
     @apply flex-col;
     @apply items-center;
     @apply m-auto;
-}
-
-.unit-image.loading {
-    @apply rounded;
-    height: 50px; 
-    width: 50px;
-}
-
-.unit-card-name.loading {
-    height: 1rem; 
-    width: 200px; 
-    margin: 1rem;
-    border-radius: 3px; 
-}
-
-.loading {
-    @apply relative;
-    background-color: #e2e2e2;
-}
-
-.loading::after {
-    @apply block;
-    @apply absolute;
-    @apply w-full;
-    @apply h-full;
-    content: "";
-    @apply -translate-x-full;
-    background: -webkit-gradient(linear, left top, 
-                    right top, from(transparent),  
-                    color-stop(rgba(255, 255, 255, 0.2)), 
-                    to(transparent));              
-    background: linear-gradient(90deg, transparent, 
-            rgba(255, 255, 255, 0.2), transparent); 
-    /* Adding animation */
-    animation: loading 0.8s infinite; 
-}
-
-@keyframes loading {
-    100% {
-        transform: translateX(100%);
-    }
 }
 
 .unit-card-name {
