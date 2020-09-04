@@ -19,3 +19,4 @@ jobs:
           NETLIFY_DEPLOY_MESSAGE: "Prod deploy v${{ github.ref }}"
           NETLIFY_DEPLOY_TO_PROD: true
           build_directory: 'dist'
+          build_command: NODE_ENV=production npm run build && npm run inject:analytics
