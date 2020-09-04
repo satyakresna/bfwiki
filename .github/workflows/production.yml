@@ -14,3 +14,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         NETLIFY_CMD: NODE_ENV=production npm run build && npm run inject:analytics
+        NETLIFY_DIR: dist
