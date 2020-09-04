@@ -1,29 +1,15 @@
-# .github/workflows/netlify.yml
-name: Build and Deploy to Netlify
-on:
-  push:
-    branches:
-      - master
+on: push
+name: Publish on Netlify
 
 jobs:
-  build:
-    runs-on: ubuntu-18.04
+  publish:
+    runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
+    - uses: actions/checkout@master
 
-      # ( Build to ./dist or other directory... )
-
-      - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v1.1
-        with:
-          publish-dir: './dist'
-          production-branch: master
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy from GitHub Actions"
-          enable-pull-request-comment: false
-          enable-commit-comment: true
-          overwrites-pull-request-comment: true
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        timeout-minutes: 1
+    - name: Publish
+      uses: netlify/actions/build@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
