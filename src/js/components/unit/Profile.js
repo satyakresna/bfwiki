@@ -1,14 +1,47 @@
 import SPRecommendation from "./SPRecommendation.js";
+import Enhancements from "./Enhancements.js";
 
 export default function (unit) {
   return document.createRange().createContextualFragment(`
   <article class="unit-profile">
     <img src="${unit.artwork}" alt="${unit.name}'s artwork" width="300" height="300" />    
     <div class="text-left">
-      <h1 class="text-2xl"><strong>${unit.name}</strong></h1>
+      <h1 class="text-3xl"><strong>${unit.name}</strong></h1>
       <p class="text-sm">${unit.element}</p>
     </div>
-    ${unit.hasOwnProperty('spRecommendation') ? SPRecommendation(unit.spRecommendation) : ''}
+    <section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
+      <h2 class="text-lg -mt-8 bg-white uppercase text-yellow-500" style="width: 150px;"><strong><em>Leader Skill</em></strong></h2>
+      <h3 class="text-2xl mt-2">${unit.skills[0].lsName}</h3>
+      <p class="mt-2 leading-loose">${unit.skills[0].lsDesc}</p>
+    </section>
+    <section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
+      <h2 class="text-lg -mt-8 bg-white uppercase text-pink-500" style="width: 150px;"><strong><em>Extra Skill</em></strong></h2>
+      <h3 class="text-2xl mt-2">${unit.skills[1].esName}</h3>
+      <p class="mt-2 leading-loose">${unit.skills[1].esDesc}</p>
+    </section>
+    <section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
+      <h2 class="text-lg -mt-8 bg-white uppercase text-blue-500" style="width: 150px;"><strong><em>Brave Burst</em></strong></h2>
+      <h3 class="text-2xl mt-2">${unit.skills[2].bbName}</h3>
+      <p class="mt-2 leading-loose">${unit.skills[2].bbDesc}</p>
+    </section>
+    <section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
+      <h2 class="text-lg -mt-8 bg-white uppercase text-yellow-500" style="width: 200px;"><strong><em>Super Brave Burst</em></strong></h2>
+      <h3 class="text-2xl mt-2">${unit.skills[3].sbbName}</h3>
+      <p class="mt-2 leading-loose">${unit.skills[3].sbbDesc}</p>
+    </section>
+    <section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
+      <h2 class="text-lg -mt-8 bg-white uppercase text-red-500" style="width: 250px;"><strong><em>Ultimate Brave Burst</em></strong></h2>
+      <h3 class="text-2xl mt-2">${unit.skills[4].ubbName}</h3>
+      <p class="mt-2 leading-loose">${unit.skills[4].ubbDesc}</p>
+    </section>
+    <section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
+      <h2 class="text-lg -mt-8 bg-white uppercase text-green-600" style="width: 150px;"><strong><em>Enhancements</em></strong></h2>
+      ${unit.hasOwnProperty('enhancements') ? Enhancements(unit.enhancements) : ''}
+    </section>
+    <section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
+      <h2 class="text-lg -mt-8 bg-white uppercase text-blue-600" style="width: 200px;"><strong><em>Enhancements Recommendation</em></strong></h2>
+      ${unit.hasOwnProperty('spRecommendation') ? SPRecommendation(unit.spRecommendation) : ''}
+    </section>
   </article>
   <div class="flex flex-col items-end fixed z-1000" style="bottom: 24px; right: 24px;">
     <button type="button" id="shareBtn" class="relative rounded-full shadow border bg-white hover:bg-gray-100 text-gray-800 border-gray-400 p-4 mt-4">

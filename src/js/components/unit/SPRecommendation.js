@@ -14,9 +14,9 @@ export default function (spRecommendation) {
     }
     $ul.appendChild(fragment);
     parentFragment.appendChild(document.createRange().createContextualFragment(`
-    <div class="my-16">
+    <div class="my-8">
       <div class="flex justify-between my-4 py-4">
-      <h2 class="text-xl"><strong>${sp.title}</strong></h2>
+      <h3 class="text-xl"><strong>${sp.title}</strong></h2>
       <button class="border rounded-full border-yellow-600 bg-blue-600 text-white w-10 h-10 text-center"><strong>${sp.total}</strong></button>
       </div>
       ${$ul.outerHTML}
