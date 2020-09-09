@@ -205,7 +205,6 @@ footer {
     @apply m-auto;
     @apply w-full;
     @apply p-4;
-    @apply bg-white;
     @apply mt-32;
     @apply mb-8;
 }
