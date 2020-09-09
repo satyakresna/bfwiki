@@ -2,6 +2,10 @@ import trackUrl from "../behaviours/trackUrl.js";
 import setActiveMenu from "../behaviours/setActiveMenu.js";
 
 export default function (ctx) {
+  if (document.body.classList.contains('bg-gray-300')) {
+    document.body.classList.remove('bg-gray-300');
+    document.body.classList.add('bg-white');
+  }
   trackUrl(ctx);
   setActiveMenu(ctx.path);
   document.title = ctx.title = `Brave Frontier Wiki | Unofficial`;

@@ -169,9 +169,8 @@ footer {
 }
 
 .unit-card-name {
-    @apply text-sm;
     @apply text-center;
-    @apply mt-2;
+    @apply mt-4;
 }
 
 .unit-card-name a:hover {

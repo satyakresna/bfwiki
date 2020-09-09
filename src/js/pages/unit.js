@@ -5,6 +5,10 @@ import setOgMeta from "../behaviours/setOgMeta.js";
 export function loadUnit(ctx, next) {
   // check if we have .state.unit already available
   // this could for example be a cached html fragment.
+  if (document.body.classList.contains('bg-gray-300')) {
+    document.body.classList.remove('bg-gray-300');
+    document.body.classList.add('bg-white');
+  }
   if (ctx.state.unit) {
     ctx.unit = ctx.state.unit;
     next();
