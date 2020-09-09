@@ -25,7 +25,7 @@ export default function (unit) {
       <p class="mt-2 leading-loose">${unit.skills[2].bbDesc}</p>
     </section>
     <section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
-      <h2 class="text-lg -mt-8 bg-gray-100 uppercase text-yellow-500" style="width: 200px;"><strong><em>Super Brave Burst</em></strong></h2>
+      <h2 class="text-lg -mt-8 bg-gray-100 uppercase text-yellow-500" style="width: 250px;"><strong><em>Super Brave Burst</em></strong></h2>
       <h3 class="text-2xl mt-2">${unit.skills[3].sbbName}</h3>
       <p class="mt-2 leading-loose">${unit.skills[3].sbbDesc}</p>
     </section>
