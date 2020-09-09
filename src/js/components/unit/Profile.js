@@ -11,27 +11,27 @@ export default function (unit) {
     </div>
     <section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
       <h2 class="text-lg -mt-8 bg-gray-100 uppercase text-yellow-500" style="width: 150px;"><strong><em>Leader Skill</em></strong></h2>
-      <h3 class="text-2xl mt-2">${unit.skills[0].lsName}</h3>
+      <h3 class="text-2xl mt-2 font-bold">${unit.skills[0].lsName}</h3>
       <p class="mt-2 leading-loose">${unit.skills[0].lsDesc}</p>
     </section>
     <section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
       <h2 class="text-lg -mt-8 bg-gray-100 uppercase text-pink-500" style="width: 150px;"><strong><em>Extra Skill</em></strong></h2>
-      <h3 class="text-2xl mt-2">${unit.skills[1].esName}</h3>
+      <h3 class="text-2xl mt-2 font-bold">${unit.skills[1].esName}</h3>
       <p class="mt-2 leading-loose">${unit.skills[1].esDesc}</p>
     </section>
     <section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
       <h2 class="text-lg -mt-8 bg-gray-100 uppercase text-blue-500" style="width: 150px;"><strong><em>Brave Burst</em></strong></h2>
-      <h3 class="text-2xl mt-2">${unit.skills[2].bbName}</h3>
+      <h3 class="text-2xl mt-2 font-bold">${unit.skills[2].bbName}</h3>
       <p class="mt-2 leading-loose">${unit.skills[2].bbDesc}</p>
     </section>
     <section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
       <h2 class="text-lg -mt-8 bg-gray-100 uppercase text-yellow-500" style="width: 250px;"><strong><em>Super Brave Burst</em></strong></h2>
-      <h3 class="text-2xl mt-2">${unit.skills[3].sbbName}</h3>
+      <h3 class="text-2xl mt-2 font-bold">${unit.skills[3].sbbName}</h3>
       <p class="mt-2 leading-loose">${unit.skills[3].sbbDesc}</p>
     </section>
     <section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
       <h2 class="text-lg -mt-8 bg-gray-100 uppercase text-red-500" style="width: 250px;"><strong><em>Ultimate Brave Burst</em></strong></h2>
-      <h3 class="text-2xl mt-2">${unit.skills[4].ubbName}</h3>
+      <h3 class="text-2xl mt-2 font-bold">${unit.skills[4].ubbName}</h3>
       <p class="mt-2 leading-loose">${unit.skills[4].ubbDesc}</p>
     </section>
     <section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">

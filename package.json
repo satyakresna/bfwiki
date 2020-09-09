@@ -8,7 +8,8 @@
     "html": "find src -name '*.html' -type f -exec cp {} dist \\;",
     "js": "rollup -c",
     "css": "postcss src/css/style.css -d dist/css",
-    "build": "npm run assets && npm run html && npm run js && npm run css",
+    "css:inter": "cp src/css/inter.css dist/css",
+    "build": "npm run assets && npm run html && npm run js && npm run css && npm run css:inter",
     "dev": "rm -rf dist && npm run build && light-server -c .lightserverrc",
     "inject:analytics": "node analytics.js",
     "production": "NODE_ENV=production npm run build && npm run inject:analytics"
