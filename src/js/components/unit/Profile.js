@@ -34,14 +34,18 @@ export default function (unit) {
       <h3 class="text-2xl mt-2 font-bold">${unit.skills[4].ubbName}</h3>
       <p class="mt-2 leading-loose">${unit.skills[4].ubbDesc}</p>
     </section>
-    <section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
-      <h2 class="text-lg -mt-8 bg-white uppercase text-green-600" style="width: 180px;"><strong><em>Enhancements</em></strong></h2>
-      ${unit.hasOwnProperty('enhancements') ? Enhancements(unit.enhancements) : ''}
-    </section>
-    <section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
-      <h2 class="text-lg -mt-8 bg-white uppercase text-blue-600" style="width: 200px;"><strong><em>Enhancements Recommendation</em></strong></h2>
-      ${unit.hasOwnProperty('spRecommendation') ? SPRecommendation(unit.spRecommendation) : ''}
-    </section>
+    ${unit.hasOwnProperty('enhancements') 
+    ? `<section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
+        <h2 class="text-lg -mt-8 bg-white uppercase text-green-600" style="width: 180px;"><strong><em>Enhancements</em></strong></h2>
+        ${ Enhancements(unit.enhancements) }
+      </section>`
+    : ''}
+    ${unit.hasOwnProperty('spRecommendation') 
+    ? `<section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
+        <h2 class="text-lg -mt-8 bg-white uppercase text-blue-600" style="width: 180px;"><strong><em>Enhancements Recommendation</em></strong></h2>
+        ${ SPRecommendation(unit.spRecommendation) }
+      </section>`
+    : ''}
   </article>
   <div class="flex flex-col items-end fixed z-1000" style="bottom: 24px; right: 24px;">
     <button type="button" id="shareBtn" class="relative rounded-full shadow border bg-white hover:bg-white text-gray-800 border-gray-400 p-4 mt-4">
