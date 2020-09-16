@@ -4,7 +4,9 @@ import { requestUnits } from "../utils/request.js";
 import SearchForm from "../components/SearchForm.js";
 import searchUnits from "../behaviours/units/search.js";
 import Skeleton from "../components/units/Skeleton.js";
+import getKeywords from "../utils/keywords.js";
 
+let searchUnitKeywordsEl;
 export default function (ctx) {
   if (document.body.classList.contains('bg-white')) {
     document.body.classList.remove('bg-white');
@@ -16,6 +18,15 @@ export default function (ctx) {
   document.querySelector('main').textContent = '';
   document.querySelector('main').appendChild(SearchForm());
   document.querySelector('main').appendChild(Skeleton());
+  searchUnitKeywordsEl = new Choices(document.getElementById('searchUnitKeywords'), {
+    items: getKeywords(),
+    choices: getKeywords(),
+    removeItemButton: true,
+    maxItemCount: 3,
+    maxItemText: (maxItemCount) => {
+      return `Only ${maxItemCount} values can be added`;
+    }
+  });
   let filteredUnits;
   if (ctx.state.units) {
     filteredUnits = filterUnits(ctx);
@@ -42,12 +53,57 @@ function filterUnits(ctx) {
     const searchParams = new URLSearchParams(ctx.querystring);
     const searchName = searchParams.get('name');
     const searchElement = searchParams.get('element');
-    if (searchName && searchElement) {
+    const searchKeywords = searchParams.get('keywords');
+    const lowerCaseSelectedKeywords = decodeURIComponent(searchKeywords).toLowerCase().replace(/\s*,\s*/g, ",").split(",");
+    const selectedKeywords = decodeURIComponent(searchKeywords).split(",");
+    if (searchName && searchElement && searchKeywords) {
       document.getElementById('searchUnitName').value = searchName;
       document.getElementById('searchUnitElement').value = searchElement;
+      searchUnitKeywordsEl.setChoiceByValue(selectedKeywords);
       filteredUnits = ctx.state.units.filter(unit => {
-        if (unit.name.toLowerCase().includes(searchName.toLowerCase()) && unit.element === searchElement) {
-          return unit;
+        let unitName = unit.name.toLowerCase();
+        let unitElement = unit.element;
+        if (unitName.includes(searchName.toLowerCase()) && unitElement === searchElement) {
+          for (const key of lowerCaseSelectedKeywords) {
+            for (let keyword of unit.keywords) {
+              keyword = keyword.toLowerCase();
+              if (keyword.includes(key)) {
+                return unit;
+              }
+            }
+          }
+        }
+      });
+    } else if (searchName && searchKeywords) {
+      document.getElementById('searchUnitName').value = searchName;
+      searchUnitKeywordsEl.setChoiceByValue(selectedKeywords);
+      filteredUnits = ctx.state.units.filter(unit => {
+        let unitName = unit.name.toLowerCase();
+        if (unitName.includes(searchName.toLowerCase())) {
+          for (const key of lowerCaseSelectedKeywords) {
+            for (let keyword of unit.keywords) {
+              keyword = keyword.toLowerCase();
+              if (keyword.includes(key)) {
+                return unit;
+              }
+            }
+          }
+        }
+      });
+    } else if (searchElement && searchKeywords) {
+      document.getElementById('searchUnitElement').value = searchElement;
+      searchUnitKeywordsEl.setChoiceByValue(selectedKeywords);
+      filteredUnits = ctx.state.units.filter(unit => {
+        let unitElement = unit.element;
+        if (unitElement === searchElement) {
+          for (const key of lowerCaseSelectedKeywords) {
+            for (let keyword of unit.keywords) {
+              keyword = keyword.toLowerCase();
+              if (keyword.includes(key)) {
+                return unit;
+              }
+            }
+          }
         }
       });
     } else if (searchName) {
@@ -62,6 +118,18 @@ function filterUnits(ctx) {
       filteredUnits = ctx.state.units.filter(unit => {
         if (unit.element === searchElement) {
           return unit;
+        }
+      });
+    } else if (searchKeywords) {
+      searchUnitKeywordsEl.setChoiceByValue(selectedKeywords);
+      filteredUnits = ctx.state.units.filter(unit => {
+        for (const key of lowerCaseSelectedKeywords) {
+          for (let keyword of unit.keywords) {
+            keyword = keyword.toLowerCase();
+            if (keyword.includes(key)) {
+              return unit;
+            }
+          }
         }
       });
     }
