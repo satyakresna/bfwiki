@@ -1,4 +1,5 @@
 import DbbCard from "../dbb/Card.js";
+import observeDbbsContent from "../../behaviours/dbbs/observeContent.js";
 
 export default function (dbbs) {
   if (Array.isArray(dbbs) && dbbs.length > 0) {
@@ -13,11 +14,11 @@ export default function (dbbs) {
     // if (window.previousPage) {
     //   window.scrollTo(0, window.previousPage);
     // }
-    // if (window.units) {
-    //   observeUnitsContent(window.units);
-    // } else {
-    //   observeUnitsContent(units);
-    // }
+    if (window.dbbs) {
+      observeDbbsContent(window.dbbs);
+    } else {
+      observeDbbsContent(dbbs);
+    }
   } else {
     document.querySelector('main #dbb-list').remove();
     document.querySelector('main').appendChild(document.createRange().createContextualFragment(`
