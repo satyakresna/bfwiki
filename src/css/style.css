@@ -8,6 +8,10 @@
     --card-height: 10rem;
     --blur-width: 200px;
     --blur-size: var(--blur-width) calc(var(--card-height));
+
+    --dbb-card-height: 480px;
+    --dbb-blur-width: 200px;
+    --dbb-blur-size: var(--dbb-blur-width) calc(var(--dbb-card-height));
 }
 
 body {
@@ -212,4 +216,137 @@ footer {
     .unit-profile {
         @apply w-3/4;
     }
+}
+
+#dbb-list {
+    @apply flex;
+    @apply flex-col;
+    @apply items-center;
+}
+
+.dbb-card {
+    @apply flex;
+    @apply flex-col;
+    @apply items-center;
+    @apply m-4;
+    @apply p-4;
+    height: 560px;
+    @apply w-11/12;
+    @apply bg-white;
+    @apply shadow;
+    @apply rounded;
+}
+
+.dbb-card:empty {
+    background-image:
+    linear-gradient(90deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%), 
+    linear-gradient(lightgray 40px, transparent 0),
+    linear-gradient(lightgray 40px, transparent 0),
+    linear-gradient(lightgray 40px, transparent 0),
+    linear-gradient(lightgray 40px, transparent 0),
+    linear-gradient(lightgray 40px, transparent 0),
+    linear-gradient(lightgray 40px, transparent 0),
+    linear-gradient(lightgray 40px, transparent 0);
+
+    background-size: 
+    var(--dbb-blur-size),
+    100px 20px,
+    50px 50px,
+    50px 50px,
+    180px 20px,
+    270px 20px,
+    270px 20px,
+    270px 20px;
+
+    background-position:
+    -150% 0,
+    80% 10%,
+    40% 30%,
+    60% 30%,
+    50% 40%,
+    50% 60%,
+    50% 65%,
+    50% 70%;
+
+    background-repeat: no-repeat;
+    animation: loading-dbb 1.5s infinite;
+}
+
+@keyframes loading-dbb {
+    to {
+        background-position: 
+        350% 0,
+        80% 10%,
+        40% 30%,
+        60% 30%,
+        50% 40%,
+        50% 60%,
+        50% 65%,
+        50% 70%;
+    }
+}
+
+@media screen and (min-width: 500px) and (max-width: 767px) {
+    .dbb-card {
+        @apply w-9/12;
+        height: 420px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #dbb-list {
+        @apply flex-row;
+        @apply flex-wrap;
+        @apply justify-center;
+    }
+
+    .dbb-card {
+        @apply w-5/12;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .dbb-card {
+        @apply w-3/12;
+    }
+}
+
+.dbb-card-container {
+    @apply flex;
+    @apply flex-col;
+    @apply items-center;
+    @apply m-auto;
+    @apply w-11/12;
+}
+
+.dbb-elemental-synergy {
+    @apply ml-auto;
+    @apply my-4;
+    @apply font-bold;
+}
+
+.dbb-card-name {
+    @apply text-center;
+    @apply mt-4;
+    @apply font-bold;
+}
+
+.dbb-card-name a:hover {
+    @apply underline;
+    @apply text-blue-700;
+}
+
+.dbb-card-desc-wrapper {
+    height: 280px;
+    @apply w-11/12;
+}
+
+.dbb-card-desc {
+    @apply text-justify;
+    @apply text-sm;
+    @apply leading-loose;
+    @apply tracking-wide;
+    /* height: 300px; */
+    /* max-height: 300px; */
+    /* @apply w-11/12; */
 }
