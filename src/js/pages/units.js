@@ -1,7 +1,7 @@
 import setActiveMenu from "../behaviours/setActiveMenu.js";
 import trackUrl from "../behaviours/trackUrl.js";
 import { requestUnits } from "../utils/request.js";
-import SearchForm from "../components/SearchForm.js";
+import SearchForm from "../components/units/SearchForm.js";
 import searchUnits from "../behaviours/units/search.js";
 import Skeleton from "../components/units/Skeleton.js";
 import getKeywords from "../utils/keywords.js";
