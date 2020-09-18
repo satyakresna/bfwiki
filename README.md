@@ -33,6 +33,9 @@ Keywords mean special abilities that belongs to omni unit. Those get from LS, ES
 - "resistance against KO attack",
 - "resistance against 1 KO attack",
 - "resistance against 2 KO attacks"
+- "Adds Doom effect purge from self to BB/UBB"
+- "purges Doom"
+- "raises allies from KO"
 
 ## Tech stack
 
