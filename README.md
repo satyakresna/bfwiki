@@ -1,13 +1,15 @@
 # Brave Frontier Wiki (BFWiki)
 
-This is a wiki to collect list of omni units and their SP. The data comes from [scraping Brave Frontier Global Fandom website](https://github.com/satyakresna/scraping-bravefrontier).
+This is a wiki to collect list of omni units and Dual Brave Burst. The data comes from [scraping Brave Frontier Global Fandom website](https://github.com/satyakresna/scraping-bravefrontier).
 
 ## Specifications
 
 - [x] Get list of omni units
-- [x] Display detail of unit and SP recommendation.
 - [x] Filter omni units based on name, element and **keywords**.
+- [x] Display detail of omni unit (Leader Skill, Extra Skill, Brave Burst, Super Brave Burst, Ultimate Brave Burst, Enhancements, SP Recommendation).
 - [x] Share detail of omni unit with Web Share API.
+- [x] Get list of Dual Brave Burst (DBB) of omni units.
+- [x] Filter DBBs based on name, elemental synergy and **keywords**.
 
 ## Keywords
 
