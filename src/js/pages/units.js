@@ -54,7 +54,7 @@ function filterUnits(ctx) {
     const searchName = searchParams.get('name');
     const searchElement = searchParams.get('element');
     const searchKeywords = searchParams.get('keywords');
-    const selectedKeywords = searchKeywords.split(",");
+    const selectedKeywords = (searchKeywords) ? searchKeywords.split(",") : [];
     if (searchName && searchElement && searchKeywords) {
       document.getElementById('searchUnitName').value = searchName;
       document.getElementById('searchUnitElement').value = searchElement;
