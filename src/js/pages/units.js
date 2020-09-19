@@ -4,7 +4,7 @@ import { requestUnits } from "../utils/request.js";
 import SearchForm from "../components/units/SearchForm.js";
 import searchUnits from "../behaviours/units/search.js";
 import Skeleton from "../components/units/Skeleton.js";
-import getKeywords from "../utils/keywords.js";
+import { getUnitKeywords } from "../utils/keywords.js";
 
 let searchUnitKeywordsEl;
 export default function (ctx) {
@@ -19,8 +19,8 @@ export default function (ctx) {
   document.querySelector('main').appendChild(SearchForm());
   document.querySelector('main').appendChild(Skeleton());
   searchUnitKeywordsEl = new Choices(document.getElementById('searchUnitKeywords'), {
-    items: getKeywords(),
-    choices: getKeywords(),
+    items: getUnitKeywords(),
+    choices: getUnitKeywords(),
     removeItemButton: true,
     maxItemCount: 3,
     maxItemText: (maxItemCount) => {
