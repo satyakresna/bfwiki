@@ -54,7 +54,6 @@ function filterUnits(ctx) {
     const searchName = searchParams.get('name');
     const searchElement = searchParams.get('element');
     const searchKeywords = searchParams.get('keywords');
-    const lowerCaseSelectedKeywords = decodeURIComponent(searchKeywords).toLowerCase().replace(/\s*,\s*/g, ",").split(",");
     const selectedKeywords = decodeURIComponent(searchKeywords).split(",");
     if (searchName && searchElement && searchKeywords) {
       document.getElementById('searchUnitName').value = searchName;
@@ -64,12 +63,9 @@ function filterUnits(ctx) {
         let unitName = unit.name.toLowerCase();
         let unitElement = unit.element;
         if (unitName.includes(searchName.toLowerCase()) && unitElement === searchElement) {
-          for (const key of lowerCaseSelectedKeywords) {
-            for (let keyword of unit.keywords) {
-              keyword = keyword.toLowerCase();
-              if (keyword.includes(key)) {
-                return unit;
-              }
+          for (let keyword of unit.keywords) {
+            if (selectedKeywords.includes(keyword)) {
+              return unit;
             }
           }
         }
@@ -80,12 +76,9 @@ function filterUnits(ctx) {
       filteredUnits = ctx.state.units.filter(unit => {
         let unitName = unit.name.toLowerCase();
         if (unitName.includes(searchName.toLowerCase())) {
-          for (const key of lowerCaseSelectedKeywords) {
-            for (let keyword of unit.keywords) {
-              keyword = keyword.toLowerCase();
-              if (keyword.includes(key)) {
-                return unit;
-              }
+          for (let keyword of unit.keywords) {
+            if (selectedKeywords.includes(keyword)) {
+              return unit;
             }
           }
         }
@@ -96,12 +89,9 @@ function filterUnits(ctx) {
       filteredUnits = ctx.state.units.filter(unit => {
         let unitElement = unit.element;
         if (unitElement === searchElement) {
-          for (const key of lowerCaseSelectedKeywords) {
-            for (let keyword of unit.keywords) {
-              keyword = keyword.toLowerCase();
-              if (keyword.includes(key)) {
-                return unit;
-              }
+          for (let keyword of unit.keywords) {
+            if (selectedKeywords.includes(keyword)) {
+              return unit;
             }
           }
         }
@@ -123,12 +113,9 @@ function filterUnits(ctx) {
     } else if (searchKeywords) {
       searchUnitKeywordsEl.setChoiceByValue(selectedKeywords);
       filteredUnits = ctx.state.units.filter(unit => {
-        for (const key of lowerCaseSelectedKeywords) {
-          for (let keyword of unit.keywords) {
-            keyword = keyword.toLowerCase();
-            if (keyword.includes(key)) {
-              return unit;
-            }
+        for (let keyword of unit.keywords) {
+          if (selectedKeywords.includes(keyword)) {
+            return unit;
           }
         }
       });
