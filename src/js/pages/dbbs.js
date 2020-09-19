@@ -68,6 +68,7 @@ function filterDbbs(ctx) {
     } else {
         filteredDbbs = ctx.state.dbbs;
     }
-
-    return filteredDbbs;
+    window.dbbs = filteredDbbs;
+    let end = 49;
+    return (filteredDbbs) ? filteredDbbs.slice(0, end) : [].slice(0, end);
 }

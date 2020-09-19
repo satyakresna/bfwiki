@@ -5,7 +5,7 @@ export default function observeUnitsContent(units) {
   if (Array.isArray(units) && units.length > 0) {
     const lastElementChild = document.querySelector('ul#unit-list').lastElementChild;
     const childrenElement = document.querySelector('ul#unit-list').children;
-
+    console.log(childrenElement.length, units.length);
     // Observe and do infinite scroll
     let contentObserver = new IntersectionObserver(function (entries, self) {
       if (entries[0].isIntersecting) {
