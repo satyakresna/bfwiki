@@ -12,7 +12,8 @@
     "build": "npm run assets && npm run html && npm run js && npm run css && npm run css:inter",
     "dev": "rm -rf dist && npm run build && light-server -c .lightserverrc",
     "inject:analytics": "node analytics.js",
-    "production": "NODE_ENV=production npm run build && npm run inject:analytics"
+    "production": "NODE_ENV=production npm run build && npm run inject:analytics",
+    "test:production": "npm run production && light-server -c .lightserverrc"
   },
   "repository": {
     "type": "git",
