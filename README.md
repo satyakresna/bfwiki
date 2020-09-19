@@ -42,6 +42,8 @@ Keywords mean special abilities that belongs to omni unit. Those get from LS, ES
 - "boost to Summoner EXP gained"
 - "boost to EXP gained"
 - "removes all status ailments"
+- "boosts ABP and CBP gain",
+- "elemental damage reduction"
 
 ## Tech stack
 

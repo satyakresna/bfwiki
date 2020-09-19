@@ -21,7 +21,9 @@ const keywords = ["extra action", "evasion", "activates BB/SBB/UBB twice",
     "boost to Summoner Avatar EXP gained",
     "boost to Summoner EXP gained",
     "boost to EXP gained",
-    "removes all status ailments"
+    "removes all status ailments",
+    "boosts ABP and CBP gain",
+    "elemental damage reduction"
 ];
 
 export default function () {
