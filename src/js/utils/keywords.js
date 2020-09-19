@@ -15,7 +15,13 @@ const keywords = ["extra action", "evasion", "activates BB/SBB/UBB twice",
     "resistance against 2 KO attacks",
     "Adds Doom effect purge from self to BB/UBB",
     "purges Doom",
-    "raises allies from KO"
+    "raises allies from KO",
+    "purges LS and ES Lock",
+    "DoT mitigation",
+    "boost to Summoner Avatar EXP gained",
+    "boost to Summoner EXP gained",
+    "boost to EXP gained",
+    "removes all status ailments"
 ];
 
 export default function () {
