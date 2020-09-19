@@ -30,6 +30,30 @@ export default function () {
     e.preventDefault();
     search(formData);
   }
+
+  document.getElementById('searchDbbKeywords').onchange = (e) => {
+    var opts = [], opt, optValue;
+
+    for (let i = 0; i < e.target.options.length; i++) {
+      opt = e.target.options[i];
+      optValue = opt.value;
+      if (opt.selected) {
+        opts.push(optValue);
+      }
+    }
+
+    if (Array.isArray(opts) && opts.length > 0) {
+      if (formData.has('keywords')) {
+        formData.delete('keywords');
+      }
+      formData.append('keywords', encodeURIComponent(opts.join(",")));
+    } else {
+      formData.delete('keywords');
+    }
+
+    e.preventDefault();
+    search(formData);
+  }
 }
 
 function search (formData) {
