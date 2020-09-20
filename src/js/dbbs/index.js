@@ -37,6 +37,8 @@ export default function (ctx) {
             Search();
         });
     });
+    // Scroll to the top page.
+    window.scrollTo(0, 0);
 }
 
 function filterDbbs(ctx) {

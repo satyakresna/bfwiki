@@ -39,8 +39,8 @@ export function showOmniUnit(ctx) {
     image: `${ctx.state.omniunit.artwork}`,
     url: window.location.href
   });
-  if (window.units) {
-    window.selectedOmniUnitIndex = window.units.findIndex((unit) => {
+  if (window.omniunits) {
+    window.selectedOmniUnitIndex = window.omniunits.findIndex((unit) => {
       return unit.name === ctx.state.omniunit.name;
     });
   }
