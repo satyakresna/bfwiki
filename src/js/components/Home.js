@@ -20,7 +20,7 @@ export default function () {
         <h2 class="text-2xl my-4"><strong>Courtesy</strong></h2>
         <ul class="leading-loose">
           <li>Brave Frontier</li>
-          <li>Brave Frontier Global Fandom</li>
+          <li><a href="https://bravefrontierglobal.fandom.com/wiki/Brave_Frontier_Wiki" target="_blank" rel="noopener" class="underline text-blue-700">Brave Frontier Global Fandom</a></li>
         </ul>
       </article>
     </div>
