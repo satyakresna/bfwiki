@@ -49,7 +49,7 @@ function filterDbbs(ctx) {
         const searchKeywords = searchParams.get('keywords');
         const selectedKeywords = (searchKeywords) ? searchKeywords.split(",") : [];
         if (searchName && searchEsName && searchKeywords) {
-            document.getElementById('searchUnitName').value = searchName;
+            document.getElementById('searchOmniUnitName').value = searchName;
             document.getElementById('searchElementalSynergy').value = searchEsName;
             searchDbbKeywordsEl.setChoiceByValue(selectedKeywords);
             filteredDbbs = ctx.state.dbbs.filter(dbb => {
@@ -67,7 +67,7 @@ function filterDbbs(ctx) {
                 }
             });
         } else if (searchName && searchKeywords) {
-            document.getElementById('searchUnitName').value = searchName;
+            document.getElementById('searchOmniUnitName').value = searchName;
             searchDbbKeywordsEl.setChoiceByValue(selectedKeywords);
             filteredDbbs = ctx.state.dbbs.filter(dbb => {
                 let firstUnitName = dbb.firstUnitName.toLowerCase();
@@ -81,7 +81,7 @@ function filterDbbs(ctx) {
                 }
             });
         } else if (searchName && searchEsName) {
-            document.getElementById('searchUnitName').value = searchName;
+            document.getElementById('searchOmniUnitName').value = searchName;
             document.getElementById('searchElementalSynergy').value = searchEsName;
             filteredDbbs = ctx.state.dbbs.filter(dbb => {
                 let firstUnitName = dbb.firstUnitName.toLowerCase();
@@ -107,7 +107,7 @@ function filterDbbs(ctx) {
                 }
             });
         } else if (searchName) {
-            document.getElementById('searchUnitName').value = searchName;
+            document.getElementById('searchOmniUnitName').value = searchName;
             filteredDbbs = ctx.state.dbbs.filter(dbb => {
                 let firstUnitName = dbb.firstUnitName.toLowerCase();
                 let secondUnitName = dbb.secondUnitName.toLowerCase();

@@ -3,7 +3,7 @@ import page from "page";
 const formData = new FormData();
 
 export default function () {
-  document.getElementById('searchUnitName').addEventListener('keydown', (e) => {
+  document.getElementById('searchOmniUnitName').addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       if (e.target.value !== "") {
         if (formData.has('name')) {
