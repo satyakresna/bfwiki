@@ -1,5 +1,5 @@
-export function getUnitKeywords() {
-    const unitKeywords = ["extra action", "evasion", "activates BB/SBB/UBB twice",
+export function getOmniUnitKeywords() {
+    const omniUnitKeywords = ["extra action", "evasion", "activates BB/SBB/UBB twice",
         "DoT mitigation", "negate all status ailments",
         "negates all status ailments",
         "negates all status ailments for all allies",
@@ -26,7 +26,7 @@ export function getUnitKeywords() {
         "boosts ABP and CBP gain",
         "elemental damage reduction"
     ];
-    return unitKeywords.map(keyword => {
+    return omniUnitKeywords.map(keyword => {
         return {
             value: keyword,
             label: keyword,

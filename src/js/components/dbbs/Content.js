@@ -11,8 +11,8 @@ export default function (dbbs) {
     }
     $dbbList.appendChild(fragement);
     document.querySelector('main').appendChild($dbbList);
-    // if (window.previousPage) {
-    //   window.scrollTo(0, window.previousPage);
+    // if (window.previousOmniUnitsPage) {
+    //   window.scrollTo(0, window.previousOmniUnitsPage);
     // }
     if (window.dbbs) {
       observeDbbsContent(window.dbbs);

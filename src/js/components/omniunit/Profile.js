@@ -1,49 +1,49 @@
 import SPRecommendation from "./SPRecommendation.js";
 import Enhancements from "./Enhancements.js";
 
-export default function (unit) {
+export default function (omniunit) {
   return document.createRange().createContextualFragment(`
-  <article class="unit-profile">
-    <img src="${unit.artwork}" alt="${unit.name}'s artwork" width="300" height="300" />    
+  <article class="omniunit-profile">
+    <img src="${omniunit.artwork}" alt="${omniunit.name}'s artwork" width="300" height="300" />    
     <div class="text-left">
-      <h1 class="text-3xl"><strong>${unit.name}</strong></h1>
-      <p class="text-sm">${unit.element}</p>
+      <h1 class="text-3xl"><strong>${omniunit.name}</strong></h1>
+      <p class="text-sm">${omniunit.element}</p>
     </div>
     <section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
       <h2 class="text-lg -mt-8 bg-white uppercase text-yellow-500" style="width: 150px;"><strong><em>Leader Skill</em></strong></h2>
-      <h3 class="text-2xl mt-2 font-bold">${unit.skills[0].lsName}</h3>
-      <p class="mt-2 leading-loose">${unit.skills[0].lsDesc}</p>
+      <h3 class="text-2xl mt-2 font-bold">${omniunit.skills[0].lsName}</h3>
+      <p class="mt-2 leading-loose">${omniunit.skills[0].lsDesc}</p>
     </section>
     <section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
       <h2 class="text-lg -mt-8 bg-white uppercase text-pink-500" style="width: 150px;"><strong><em>Extra Skill</em></strong></h2>
-      <h3 class="text-2xl mt-2 font-bold">${unit.skills[1].esName}</h3>
-      <p class="mt-2 leading-loose">${unit.skills[1].esDesc}</p>
+      <h3 class="text-2xl mt-2 font-bold">${omniunit.skills[1].esName}</h3>
+      <p class="mt-2 leading-loose">${omniunit.skills[1].esDesc}</p>
     </section>
     <section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
       <h2 class="text-lg -mt-8 bg-white uppercase text-blue-500" style="width: 150px;"><strong><em>Brave Burst</em></strong></h2>
-      <h3 class="text-2xl mt-2 font-bold">${unit.skills[2].bbName}</h3>
-      <p class="mt-2 leading-loose">${unit.skills[2].bbDesc}</p>
+      <h3 class="text-2xl mt-2 font-bold">${omniunit.skills[2].bbName}</h3>
+      <p class="mt-2 leading-loose">${omniunit.skills[2].bbDesc}</p>
     </section>
     <section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
       <h2 class="text-lg -mt-8 bg-white uppercase text-yellow-500" style="width: 250px;"><strong><em>Super Brave Burst</em></strong></h2>
-      <h3 class="text-2xl mt-2 font-bold">${unit.skills[3].sbbName}</h3>
-      <p class="mt-2 leading-loose">${unit.skills[3].sbbDesc}</p>
+      <h3 class="text-2xl mt-2 font-bold">${omniunit.skills[3].sbbName}</h3>
+      <p class="mt-2 leading-loose">${omniunit.skills[3].sbbDesc}</p>
     </section>
     <section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
       <h2 class="text-lg -mt-8 bg-white uppercase text-red-500" style="width: 250px;"><strong><em>Ultimate Brave Burst</em></strong></h2>
-      <h3 class="text-2xl mt-2 font-bold">${unit.skills[4].ubbName}</h3>
-      <p class="mt-2 leading-loose">${unit.skills[4].ubbDesc}</p>
+      <h3 class="text-2xl mt-2 font-bold">${omniunit.skills[4].ubbName}</h3>
+      <p class="mt-2 leading-loose">${omniunit.skills[4].ubbDesc}</p>
     </section>
-    ${unit.hasOwnProperty('enhancements') 
+    ${omniunit.hasOwnProperty('enhancements') 
     ? `<section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
         <h2 class="text-lg -mt-8 bg-white uppercase text-green-600" style="width: 180px;"><strong><em>Enhancements</em></strong></h2>
-        ${ Enhancements(unit.enhancements) }
+        ${ Enhancements(omniunit.enhancements) }
       </section>`
     : ''}
-    ${unit.hasOwnProperty('spRecommendation') 
+    ${omniunit.hasOwnProperty('spRecommendation') 
     ? `<section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
         <h2 class="text-lg -mt-8 bg-white uppercase text-blue-600" style="width: 180px;"><strong><em>Enhancements Recommendation</em></strong></h2>
-        ${ SPRecommendation(unit.spRecommendation) }
+        ${ SPRecommendation(omniunit.spRecommendation) }
       </section>`
     : ''}
   </article>

@@ -1,13 +1,13 @@
 import page from "page";
-import Units from "./pages/units.js";
+import OmniUnits from "./pages/omniunits.js";
 import Dbbs from "./pages/dbbs.js";
-import { loadUnit, showUnit } from "./pages/unit.js";
+import { loadOmniUnit, showOmniUnit } from "./pages/omniunit.js";
 import NotFound from "./pages/notfound.js";
 import Home from "./pages/home.js";
 
 page('/', Home);
-page('/units', Units);
-page('/units/:unit', loadUnit, showUnit);
+page('/omniunits', OmniUnits);
+page('/omniunits/:omniunit', loadOmniUnit, showOmniUnit);
 page('/dbbs', Dbbs);
 page('*', NotFound);
 // Call it!

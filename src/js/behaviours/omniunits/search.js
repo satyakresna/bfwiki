@@ -3,7 +3,7 @@ import page from "page";
 const formData = new FormData();
 
 export default function () {
-  document.getElementById('searchUnitName').addEventListener('keydown', (e) => {
+  document.getElementById('searchOmniUnitName').addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       if (e.target.value !== "") {
         if (formData.has('name')) {
@@ -18,7 +18,7 @@ export default function () {
     }
   });
 
-  document.getElementById('searchUnitElement').onchange = (e) => {
+  document.getElementById('searchOmniUnitElement').onchange = (e) => {
     if (e.target.value !== "") {
       if (formData.has('element')) {
         formData.delete('element');
@@ -31,7 +31,7 @@ export default function () {
     search(formData);
   }
 
-  document.getElementById('searchUnitKeywords').onchange = (e) => {
+  document.getElementById('searchOmniUnitKeywords').onchange = (e) => {
     var opts = [], opt, optValue;
 
     for (let i = 0; i < e.target.options.length; i++) {
@@ -64,7 +64,7 @@ function search (formData) {
     page.show(`${window.location.pathname}`);
   }
   // Set previous page position Y to 0 when searching
-  if (window.previousPage) {
-    window.previousPage = 0;
+  if (window.previousOmniUnitsPage) {
+    window.previousOmniUnitsPage = 0;
   }
 }

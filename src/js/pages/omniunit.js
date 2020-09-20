@@ -1,22 +1,22 @@
-import { requestUnit } from "../utils/request.js";
+import { requestOmniUnit } from "../utils/request.js";
 import trackUrl from "../behaviours/trackUrl.js";
 import setOgMeta from "../behaviours/setOgMeta.js";
 
-export function loadUnit(ctx, next) {
-  // check if we have .state.unit already available
+export function loadOmniUnit(ctx, next) {
+  // check if we have .state.omniunit already available
   // this could for example be a cached html fragment.
   if (document.body.classList.contains('bg-gray-300')) {
     document.body.classList.remove('bg-gray-300');
     document.body.classList.add('bg-white');
   }
-  if (ctx.state.unit) {
-    ctx.unit = ctx.state.unit;
+  if (ctx.state.omniunit) {
+    ctx.omniunit = ctx.state.omniunit;
     next();
     return;
   }
   NProgress.start();
-  requestUnit(encodeURIComponent(ctx.params.unit)).then(data => {
-    ctx.state.unit = data;
+  requestOmniUnit(encodeURIComponent(ctx.params.omniunit)).then(data => {
+    ctx.state.omniunit = data;
     ctx.save();
     next();
   })
@@ -29,29 +29,29 @@ export function loadUnit(ctx, next) {
   });
 }
 
-export function showUnit(ctx) {
-  window.previousPage = window.scrollY;
+export function showOmniUnit(ctx) {
+  window.previousOmniUnitsPage = window.scrollY;
   trackUrl(ctx);
-  document.title = ctx.title = `${ctx.state.unit.name} - Brave Frontier Wiki`;
+  document.title = ctx.title = `${ctx.state.omniunit.name} - Brave Frontier Wiki`;
   setOgMeta({
-    title: ctx.state.unit.name,
-    description: `${ctx.state.unit.name}'s Profile`,
-    image: `${ctx.state.unit.artwork}`,
+    title: ctx.state.omniunit.name,
+    description: `${ctx.state.omniunit.name}'s Profile`,
+    image: `${ctx.state.omniunit.artwork}`,
     url: window.location.href
   });
   if (window.units) {
-    window.selectedUnitIndex = window.units.findIndex((unit) => {
-      return unit.name === ctx.state.unit.name;
+    window.selectedOmniUnitIndex = window.units.findIndex((unit) => {
+      return unit.name === ctx.state.omniunit.name;
     });
   }
-  import("../components/unit/Profile.js").then(({ default: UnitProfile }) => {
+  import("../components/omniunit/Profile.js").then(({ default: OmniUnitProfile }) => {
     document.querySelector('main').textContent = '';
-    document.querySelector('main').appendChild(UnitProfile(ctx.state.unit));
+    document.querySelector('main').appendChild(OmniUnitProfile(ctx.state.omniunit));
     document.getElementById('shareBtn').addEventListener('click', async (e) => {
       e.preventDefault();
       try {
-        const module = await import("../behaviours/unit/share.js");
-        module.default(ctx.state.unit);
+        const module = await import("../behaviours/omniunit/share.js");
+        module.default(ctx.state.omniunit);
       } catch (error) {
         console.log(error);
       }
