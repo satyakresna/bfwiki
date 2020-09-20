@@ -18,7 +18,6 @@ export function getOmniUnitKeywords() {
         "purges Doom",
         "raises allies from KO",
         "purges LS and ES Lock",
-        "DoT mitigation",
         "boost to Summoner Avatar EXP gained",
         "boost to Summoner EXP gained",
         "boost to EXP gained",
