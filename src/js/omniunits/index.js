@@ -1,5 +1,4 @@
-import SearchForm from "./components/SearchForm.js";
-import searchOmniUnits from "./behaviours/search.js";
+import { SearchForm, Search } from "./components/Search.js";
 import Skeleton from "./components/Skeleton.js";
 import { getOmniUnitKeywords } from "../utils/keywords.js";
 import setActiveMenu from "../utils/setActiveMenu.js";
@@ -32,7 +31,7 @@ export default function (ctx) {
     filteredOmniUnits = filterOmniUnits(ctx);
     import("./components/Content.js").then(module => {
       module.default(filteredOmniUnits);
-      searchOmniUnits();
+      Search();
     });
   } else {
     requestOmniUnits().then(data => {
@@ -41,7 +40,7 @@ export default function (ctx) {
       filteredOmniUnits = filterOmniUnits(ctx);
       import("./components/Content.js").then(module => {
         module.default(filteredOmniUnits);
-        searchOmniUnits();
+        Search();
       });
     });
   }

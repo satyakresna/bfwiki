@@ -1,9 +1,8 @@
+import Skeleton from "./components/Skeleton.js";
+import { SearchForm, Search } from "./components/Search.js";
 import setActiveMenu from "../utils/setActiveMenu.js";
 import trackUrl from "../utils/trackUrl.js";
 import { requestDbbs } from "../utils/request.js";
-import Skeleton from "./components/Skeleton.js";
-import SearchForm from "./components/SearchForm.js";
-import searchDbbs from "./behaviours/search.js";
 import { getDbbKeywords } from "../utils/keywords.js";
 
 let searchDbbKeywordsEl;
@@ -35,7 +34,7 @@ export default function (ctx) {
         filteredDbbs = filterDbbs(ctx);
         import("./components/Content.js").then(module => {
             module.default(filteredDbbs);
-            searchDbbs();
+            Search();
         });
     });
 }
