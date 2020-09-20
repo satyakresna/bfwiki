@@ -1,5 +1,5 @@
-import OmniUnitCard from "../omniunit/Card.js";
-import observeOmniUnitsContent from "../../behaviours/omniunits/observeContent.js";
+import OmniUnitCard from "./Card.js";
+import observeOmniUnitsContent from "../behaviours/observeContent.js";
 
 export default function (omniunits) {
   if (Array.isArray(omniunits) && omniunits.length > 0) {

@@ -1,9 +1,9 @@
-import setActiveMenu from "../behaviours/setActiveMenu.js";
-import trackUrl from "../behaviours/trackUrl.js";
+import setActiveMenu from "../utils/setActiveMenu.js";
+import trackUrl from "../utils/trackUrl.js";
 import { requestDbbs } from "../utils/request.js";
-import Skeleton from "../components/dbbs/Skeleton.js";
-import SearchForm from "../components/dbbs/SearchForm.js";
-import searchDbbs from "../behaviours/dbbs/search.js";
+import Skeleton from "./components/Skeleton.js";
+import SearchForm from "./components/SearchForm.js";
+import searchDbbs from "./behaviours/search.js";
 import { getDbbKeywords } from "../utils/keywords.js";
 
 let searchDbbKeywordsEl;
@@ -33,7 +33,7 @@ export default function (ctx) {
         ctx.state.dbbs = data;
         ctx.save();
         filteredDbbs = filterDbbs(ctx);
-        import("../components/dbbs/Content.js").then(module => {
+        import("./components/Content.js").then(module => {
             module.default(filteredDbbs);
             searchDbbs();
         });

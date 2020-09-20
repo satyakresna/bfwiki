@@ -1,4 +1,4 @@
-import DbbCard from "../../components/dbb/Card.js";
+import DbbCard from "../components/Card.js";
 import observeDbbsThumbnail from "./observeThumbnails.js";
 
 export default function observeDbbsContent (dbbs) {

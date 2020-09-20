@@ -1,6 +1,6 @@
 import { requestOmniUnit } from "../utils/request.js";
-import trackUrl from "../behaviours/trackUrl.js";
-import setOgMeta from "../behaviours/setOgMeta.js";
+import trackUrl from "../utils/trackUrl.js";
+import setOgMeta from "../utils/setOgMeta.js";
 
 export function loadOmniUnit(ctx, next) {
   // check if we have .state.omniunit already available
@@ -44,13 +44,13 @@ export function showOmniUnit(ctx) {
       return unit.name === ctx.state.omniunit.name;
     });
   }
-  import("../components/omniunit/Profile.js").then(({ default: OmniUnitProfile }) => {
+  import("./components/Profile.js").then(({ default: OmniUnitProfile }) => {
     document.querySelector('main').textContent = '';
     document.querySelector('main').appendChild(OmniUnitProfile(ctx.state.omniunit));
     document.getElementById('shareBtn').addEventListener('click', async (e) => {
       e.preventDefault();
       try {
-        const module = await import("../behaviours/omniunit/share.js");
+        const module = await import("./behaviours/share.js");
         module.default(ctx.state.omniunit);
       } catch (error) {
         console.log(error);

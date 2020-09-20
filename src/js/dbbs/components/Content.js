@@ -1,5 +1,5 @@
-import DbbCard from "../dbb/Card.js";
-import observeDbbsContent from "../../behaviours/dbbs/observeContent.js";
+import DbbCard from "./Card.js";
+import observeDbbsContent from "../behaviours/observeContent.js";
 
 export default function (dbbs) {
   if (Array.isArray(dbbs) && dbbs.length > 0) {

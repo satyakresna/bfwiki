@@ -1,10 +1,10 @@
-import setActiveMenu from "../behaviours/setActiveMenu.js";
-import trackUrl from "../behaviours/trackUrl.js";
-import { requestOmniUnits } from "../utils/request.js";
-import SearchForm from "../components/omniunits/SearchForm.js";
-import searchOmniUnits from "../behaviours/omniunits/search.js";
-import Skeleton from "../components/omniunits/Skeleton.js";
+import SearchForm from "./components/SearchForm.js";
+import searchOmniUnits from "./behaviours/search.js";
+import Skeleton from "./components/Skeleton.js";
 import { getOmniUnitKeywords } from "../utils/keywords.js";
+import setActiveMenu from "../utils/setActiveMenu.js";
+import trackUrl from "../utils/trackUrl.js";
+import { requestOmniUnits } from "../utils/request.js";
 
 let searchOmniUnitKeywordsEl;
 export default function (ctx) {
@@ -30,7 +30,7 @@ export default function (ctx) {
   let filteredOmniUnits;
   if (ctx.state.omniunits) {
     filteredOmniUnits = filterOmniUnits(ctx);
-    import("../components/omniunits/Content.js").then(module => {
+    import("./components/Content.js").then(module => {
       module.default(filteredOmniUnits);
       searchOmniUnits();
     });
@@ -39,7 +39,7 @@ export default function (ctx) {
       ctx.state.omniunits = data;
       ctx.save();
       filteredOmniUnits = filterOmniUnits(ctx);
-      import("../components/omniunits/Content.js").then(module => {
+      import("./components/Content.js").then(module => {
         module.default(filteredOmniUnits);
         searchOmniUnits();
       });

@@ -1,4 +1,4 @@
-import OmniUnitCard from "../../components/omniunit/Card.js";
+import OmniUnitCard from "../components/Card.js";
 import observeOmniUnitsThumbnail from "./observeThumbnails.js";
 
 export default function observeOmniUnitsContent(omniunits) {

@@ -1,9 +1,9 @@
 import page from "page";
-import OmniUnits from "./pages/omniunits.js";
-import Dbbs from "./pages/dbbs.js";
-import { loadOmniUnit, showOmniUnit } from "./pages/omniunit.js";
-import NotFound from "./pages/notfound.js";
-import Home from "./pages/home.js";
+import Home from "./home/index.js";
+import OmniUnits from "./omniunits/index.js";
+import { loadOmniUnit, showOmniUnit } from "./omniunit/index.js";
+import Dbbs from "./dbbs/index.js";
+import NotFound from "./notfound.js";
 
 page('/', Home);
 page('/omniunits', OmniUnits);
