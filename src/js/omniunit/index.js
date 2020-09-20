@@ -50,7 +50,7 @@ export function showOmniUnit(ctx) {
     document.getElementById('shareBtn').addEventListener('click', async (e) => {
       e.preventDefault();
       try {
-        const module = await import("./behaviours/share.js");
+        const module = await import("./components/Share.js");
         module.default(ctx.state.omniunit);
       } catch (error) {
         console.log(error);
