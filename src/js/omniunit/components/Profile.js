@@ -4,7 +4,7 @@ import Enhancements from "./Enhancements.js";
 export default function (omniunit) {
   return document.createRange().createContextualFragment(`
   <article class="omniunit-profile">
-    <img src="${omniunit.artwork}" alt="${omniunit.name}'s artwork" width="300" height="300" />    
+    <img src="https://res.cloudinary.com/satyakresna/image/upload/bravefrontier/omniunits/artworks/${omniunit.id}" alt="${omniunit.name}'s artwork" width="300" height="300" />    
     <div class="text-left">
       <h1 class="text-3xl"><strong>${omniunit.name}</strong></h1>
       <p class="text-sm">${omniunit.element}</p>
