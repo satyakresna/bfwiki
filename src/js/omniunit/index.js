@@ -5,10 +5,6 @@ import setOgMeta from "../utils/setOgMeta.js";
 export function loadOmniUnit(ctx, next) {
   // check if we have .state.omniunit already available
   // this could for example be a cached html fragment.
-  if (document.body.classList.contains('bg-gray-300')) {
-    document.body.classList.remove('bg-gray-300');
-    document.body.classList.add('bg-white');
-  }
   if (ctx.state.omniunit) {
     ctx.omniunit = ctx.state.omniunit;
     next();

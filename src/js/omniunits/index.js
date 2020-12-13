@@ -7,10 +7,6 @@ import { requestOmniUnits } from "../utils/request.js";
 
 let searchOmniUnitKeywordsEl;
 export default function (ctx) {
-  if (document.body.classList.contains('bg-white')) {
-    document.body.classList.remove('bg-white');
-    document.body.classList.add('bg-gray-300');
-  }
   trackUrl(ctx);
   setActiveMenu(ctx.path);
   document.title = ctx.title = 'Brave Frontier Wiki';

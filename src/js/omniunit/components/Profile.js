@@ -10,39 +10,39 @@ export default function (omniunit) {
       <p class="text-sm">${omniunit.element}</p>
     </div>
     <section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
-      <h2 class="text-lg -mt-8 bg-white uppercase text-yellow-500" style="width: 150px;"><strong><em>Leader Skill</em></strong></h2>
+      <h2 class="text-lg -mt-8 bg-gray-200 uppercase text-yellow-500" style="width: 150px;"><strong><em>Leader Skill</em></strong></h2>
       <h3 class="text-2xl mt-2 font-bold">${omniunit.skills[0].lsName}</h3>
       <p class="mt-2 leading-loose">${omniunit.skills[0].lsDesc}</p>
     </section>
     <section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
-      <h2 class="text-lg -mt-8 bg-white uppercase text-pink-500" style="width: 150px;"><strong><em>Extra Skill</em></strong></h2>
+      <h2 class="text-lg -mt-8 bg-gray-200 uppercase text-pink-500" style="width: 150px;"><strong><em>Extra Skill</em></strong></h2>
       <h3 class="text-2xl mt-2 font-bold">${omniunit.skills[1].esName}</h3>
       <p class="mt-2 leading-loose">${omniunit.skills[1].esDesc}</p>
     </section>
     <section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
-      <h2 class="text-lg -mt-8 bg-white uppercase text-blue-500" style="width: 150px;"><strong><em>Brave Burst</em></strong></h2>
+      <h2 class="text-lg -mt-8 bg-gray-200 uppercase text-blue-500" style="width: 150px;"><strong><em>Brave Burst</em></strong></h2>
       <h3 class="text-2xl mt-2 font-bold">${omniunit.skills[2].bbName}</h3>
       <p class="mt-2 leading-loose">${omniunit.skills[2].bbDesc}</p>
     </section>
     <section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
-      <h2 class="text-lg -mt-8 bg-white uppercase text-yellow-500" style="width: 250px;"><strong><em>Super Brave Burst</em></strong></h2>
+      <h2 class="text-lg -mt-8 bg-gray-200 uppercase text-yellow-500" style="width: 250px;"><strong><em>Super Brave Burst</em></strong></h2>
       <h3 class="text-2xl mt-2 font-bold">${omniunit.skills[3].sbbName}</h3>
       <p class="mt-2 leading-loose">${omniunit.skills[3].sbbDesc}</p>
     </section>
     <section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
-      <h2 class="text-lg -mt-8 bg-white uppercase text-red-500" style="width: 250px;"><strong><em>Ultimate Brave Burst</em></strong></h2>
+      <h2 class="text-lg -mt-8 bg-gray-200 uppercase text-red-500" style="width: 250px;"><strong><em>Ultimate Brave Burst</em></strong></h2>
       <h3 class="text-2xl mt-2 font-bold">${omniunit.skills[4].ubbName}</h3>
       <p class="mt-2 leading-loose">${omniunit.skills[4].ubbDesc}</p>
     </section>
     ${omniunit.hasOwnProperty('enhancements') 
     ? `<section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
-        <h2 class="text-lg -mt-8 bg-white uppercase text-green-600" style="width: 180px;"><strong><em>Enhancements</em></strong></h2>
+        <h2 class="text-lg -mt-8 bg-gray-200 uppercase text-green-600" style="width: 180px;"><strong><em>Enhancements</em></strong></h2>
         ${ Enhancements(omniunit.enhancements) }
       </section>`
     : ''}
     ${omniunit.hasOwnProperty('spRecommendation') 
     ? `<section class="w-full my-8 border-solid border-4 border-yellow-500 p-4">
-        <h2 class="text-lg -mt-8 bg-white uppercase text-blue-600" style="width: 180px;"><strong><em>Enhancements Recommendation</em></strong></h2>
+        <h2 class="text-lg -mt-8 bg-gray-200 uppercase text-blue-600" style="width: 180px;"><strong><em>Enhancements Recommendation</em></strong></h2>
         ${ SPRecommendation(omniunit.spRecommendation) }
       </section>`
     : ''}
