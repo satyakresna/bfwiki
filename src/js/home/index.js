@@ -12,5 +12,8 @@ export default function (ctx) {
   import('./components/Home.js').then(module => {
     document.querySelector('main').textContent = '';
     document.querySelector('main').appendChild(module.default());
+    document.querySelector('button').addEventListener('click', () => {
+      document.getElementById('banner').style.display = "none";
+    });
   });
 }
